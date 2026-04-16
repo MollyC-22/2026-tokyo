@@ -22,47 +22,92 @@
   }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body, html { margin: 0; padding: 0; height: 100%; background-color: #f0f0f0; font-family: 'M PLUS Rounded 1c', sans-serif; overflow: hidden; }
-  .app-container { max-width: 480px; margin: 0 auto; height: 100vh; display: flex; flex-direction: column; background: var(--bg-pink); color: var(--text-main); position: relative; }
-  header { background: var(--primary); color: white; padding: 12px 15px; text-align: center; font-weight: 900; font-size: 1.15rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 10; }
-  .day-selector { display: flex; overflow-x: auto; background: white; padding: 12px 8px; border-bottom: 1px solid #FFE4E1; scrollbar-width: none; }
+  
+  .app-container {
+    max-width: 480px; margin: 0 auto; height: 100vh; display: flex; flex-direction: column;
+    background: var(--bg-pink); color: var(--text-main); position: relative;
+  }
+
+  header { background: var(--primary); color: white; padding: 12px 15px; text-align: center; font-weight: 900; font-size: 1.15rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 10; letter-spacing: 1px;}
+  
+  .day-selector {
+    display: flex; overflow-x: auto; background: white; padding: 12px 8px;
+    border-bottom: 1px solid #FFE4E1; scrollbar-width: none;
+  }
   .day-selector::-webkit-scrollbar { display: none; }
-  .day-btn { flex: 0 0 65px; text-align: center; padding: 10px 0; margin: 0 6px; border-radius: 15px; background: #FFF0F5; color: var(--primary); font-size: 0.85rem; font-weight: bold; transition: all 0.2s; border: 1px solid transparent; }
+  .day-btn {
+    flex: 0 0 65px; text-align: center; padding: 10px 0; margin: 0 6px;
+    border-radius: 15px; background: #FFF0F5; color: var(--primary); font-size: 0.85rem; font-weight: bold;
+    transition: all 0.2s; border: 1px solid transparent;
+  }
   .day-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 10px rgba(255,117,151,0.3); border-color: #FFB6C1; }
+
   main { flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 90px; }
   .day-view { display: none; animation: fadeIn 0.4s ease; }
   .day-view.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  .weather-card { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); border-radius: 15px; padding: 12px 15px; margin-bottom: 18px; color: white; font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 10px rgba(142, 197, 252, 0.4); }
+
+  .weather-card {
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    border-radius: 15px; padding: 12px 15px; margin-bottom: 18px; color: white;
+    font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(142, 197, 252, 0.4);
+  }
   .weather-icon { font-size: 1.5rem; }
-  .card { background: white; border-radius: 18px; padding: 16px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(255,117,151,0.08); border: 1px solid #FFF0F5; }
+
+  .card { background: white; border-radius: 18px; padding: 16px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(255,117,151,0.08); position: relative; border: 1px solid #FFF0F5; }
+  
   .activity-card { border-left: 6px solid var(--primary); }
   .activity-time { font-weight: 900; color: var(--primary); font-size: 0.95rem; margin-bottom: 6px; background: #FFF0F5; padding: 4px 10px; border-radius: 8px; display: inline-block; }
+  
+  /* 標題變成超連結導航 */
   .title-link { text-decoration: none; color: inherit; display: block; margin-top: 8px; margin-bottom: 10px; transition: opacity 0.2s; }
+  .title-link:active { opacity: 0.6; }
   .activity-title { font-size: 1.1rem; font-weight: 900; color: #333; display: flex; align-items: center; gap: 6px; }
-  .pin { font-size: 1.1rem; color: var(--primary); }
-  .activity-desc { font-size: 0.9rem; color: #666; line-height: 1.5; }
-  .transport-card { background: #fdfdfd; border: 1px dashed #e1e1e1; padding: 12px 18px; border-radius: 15px; margin: -5px 0 20px 15px; position: relative; font-size: 0.88rem; line-height: 1.6; color: #555; }
-  .transport-card::before { content: ''; position: absolute; left: -12px; top: -15px; bottom: -15px; width: 3px; background: #FFD1DC; border-radius: 10px; }
+  .activity-title .pin { font-size: 1.1rem; color: var(--primary); }
+  
+  .activity-desc { font-size: 0.9rem; color: #666; margin-bottom: 10px; line-height: 1.5; }
+  
+  .transport-card {
+    background: #fdfdfd; border: 1px dashed #e1e1e1; padding: 12px 18px; border-radius: 15px;
+    margin: -5px 0 20px 15px; position: relative; font-size: 0.88rem; line-height: 1.6; color: #555;
+  }
+  .transport-card::before {
+    content: ''; position: absolute; left: -12px; top: -15px; bottom: -15px;
+    width: 3px; background: #FFD1DC; border-radius: 10px;
+  }
   .transport-line { display: inline-block; padding: 2px 8px; border-radius: 5px; color: white; font-weight: bold; font-size: 0.75rem; margin-right: 5px; }
   .line-metro { background: var(--metro-orange); }
   .line-hibiya { background: var(--metro-gray); }
   .line-hanzomon { background: var(--metro-purple); }
   .line-jr { background: var(--jr-yellow); color: #333; }
   .walk-text { font-weight: bold; color: #d35400; display: block; margin-top: 4px; }
+
+  /* 導遊標籤系統 */
   .tags-container { display: flex; flex-direction: column; gap: 6px; margin-bottom: 5px; }
   .tag { font-size: 0.82rem; padding: 8px 12px; border-radius: 8px; font-weight: 700; display: flex; align-items: flex-start; line-height: 1.4; gap: 5px; }
   .tag-eat { background: #FFF3E0; color: #E65100; border-left: 4px solid #FF9800; }
+  .tag-buy { background: #E0F2F1; color: #00695C; border-left: 4px solid #26A69A; }
+  .tag-res { background: #FFEBEE; color: #C62828; border-left: 4px solid #F44336; font-weight: 900; }
   .tag-guide { background: #F3E5F5; color: #4A148C; border-left: 4px solid #9C27B0; }
-  .tag-star { background: #FFF9C4; color: #F57F17; border-left: 4px solid #FBC02D; }
-  .bottom-nav { position: absolute; bottom: 0; width: 100%; height: 70px; background: white; border-top: 1px solid #FFE4E1; display: flex; justify-content: space-around; align-items: center; }
-  .nav-item { text-align: center; font-size: 0.8rem; color: #BBB; flex: 1; font-weight: bold; }
+  .tag-star { background: #FFF9C4; color: #F57F17; border-left: 4px solid #FBC02D; font-weight: 900; }
+  
+  /* 底部導覽 */
+  .bottom-nav {
+    position: absolute; bottom: 0; width: 100%; height: 70px; background: white;
+    border-top: 1px solid #FFE4E1; display: flex; justify-content: space-around; align-items: center; box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
+  }
+  .nav-item { text-align: center; font-size: 0.8rem; color: #BBB; flex: 1; transition: 0.3s; font-weight: bold; cursor: pointer; }
   .nav-item.active { color: var(--primary); }
-  .nav-icon { font-size: 1.5rem; display: block; }
-  .checklist-group { background: white; border-radius: 18px; padding: 18px; margin-bottom: 15px; }
+  .nav-icon { font-size: 1.5rem; display: block; margin-bottom: 2px; }
+
+  /* Checklist */
+  .checklist-group { background: white; border-radius: 18px; padding: 18px; margin-bottom: 15px; border: 1px solid #FFF0F5; }
   .checklist-title { color: var(--primary); font-weight: 900; border-bottom: 2px solid #FFF0F5; padding-bottom: 8px; margin-bottom: 12px; font-size: 1.05rem; }
-  .check-item { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.95rem; }
+  .check-item { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.95rem; color: #555; }
   .check-item input[type="checkbox"] { margin-right: 12px; width: 20px; height: 20px; accent-color: var(--primary); }
   .check-item.done { text-decoration: line-through; color: #aaa; }
+
 </style>
 </head>
 <body>
@@ -81,7 +126,262 @@
 
   <main id="main-content">
     
-    <div id="day4" class="day-view active">
+    <div id="day1" class="day-view active">
+      <div class="weather-card">
+        <div>📍 銀座・澀谷<br><span style="font-size:0.75rem; font-weight:normal;">6月均溫 22~26°C (初夏梅雨季，請攜帶輕便摺疊傘)</span></div>
+        <div class="weather-icon">🌧️</div>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">06:30 - 07:30</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=成田國際機場" target="_blank" class="title-link">
+          <div class="activity-title">🛬 抵達成田機場 <span class="pin">📍</span></div>
+        </a>
+        <div class="activity-desc">辦理入境手續，準備前往市區。</div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">07:30 - 08:50</span><br>
+        <span class="transport-line line-jr">JR 總武線快速</span> <b>成田機場 → 錦糸町站</b> (直達)<br>
+        <span class="walk-text">🚶‍♂️ 出站後步行約 5 分鐘抵達民宿</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">08:50 - 09:10</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=Sky+Kinshicho+Tokyo" target="_blank" class="title-link">
+          <div class="activity-title">🏨 Sky 錦糸町 (寄放行李) <span class="pin">📍</span></div>
+        </a>
+        <div class="activity-desc">先到民宿櫃台寄放行李，一身輕裝準備出發！</div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">09:10 - 09:40</span><br>
+        <span class="transport-line line-hanzomon">半藏門線</span> 錦糸町站 → 三越前站<br>
+        🔄 轉乘：<span class="transport-line line-metro">銀座線</span> 三越前站 → <b>銀座站</b><br>
+        <span class="walk-text">🚶‍♂️ 抵達銀座站後步行約 2 分鐘抵達餐廳</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">10:00 - 11:15</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=銀座木村家" target="_blank" class="title-link">
+          <div class="activity-title">🥐 銀座悠哉早餐時光 <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-eat"><span>🍔</span><span><b>暖心推薦：</b>前往百年歷史的「銀座木村家」品嚐剛出爐的酒種紅豆麵包！若想喝咖啡，附近步行 3 分鐘的復古喫茶店「TRICOLORE」也很棒。</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">11:15 - 11:30</span><br>
+        <span class="walk-text">🚶‍♂️ 步行約 5 分鐘抵達燒肉 INOUE</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">11:30 - 13:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=焼肉+いのうえ+銀座店" target="_blank" class="title-link">
+          <div class="activity-title">🥩 燒肉 INOUE (銀座店) <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-res"><span>🔴</span><span><b>重要預約：</b>請確認已提前 1 個月預約完成！</span></div>
+          <div class="tag tag-eat"><span>🍔</span><span><b>必吃推薦：</b>午間限定「和牛蓋飯三吃」！鋪滿玫瑰色和牛的飯，拌入溫泉蛋與牛骨高湯，滿滿幸福感。</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">13:15 - 13:45</span><br>
+        <span class="transport-line line-metro">銀座線</span> <b>銀座站 → 澀谷站</b> (直達約 16 分)<br>
+        <span class="walk-text">🚶‍♂️ 出站後步行約 7 分鐘抵達 PARCO</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">14:00 - 17:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=澀谷+PARCO" target="_blank" class="title-link">
+          <div class="activity-title">🎮 澀谷 PARCO (JOJO主戰場) <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-guide"><span>📖</span><span><b>導遊攻略：</b>本次重點是 6F 的 <b>JOJO WORLD</b>！請先全力攻略這裡，如果有剩餘的時間再去逛旁邊的 Nintendo TOKYO 或 Pokemon Center。</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">17:00 - 17:30</span><br>
+        <span class="transport-line line-metro">銀座線</span> 澀谷站 → 溜池山王站<br>
+        🔄 轉乘：<span class="transport-line line-hibiya">日比谷線</span> 溜池山王站 → <b>神谷町站</b><br>
+        <span class="walk-text">🚶‍♂️ 出站後步行約 5 分鐘抵達麻布台之丘</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">17:30 - 19:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=麻布台之丘" target="_blank" class="title-link">
+          <div class="activity-title">🏙️ 麻布台之丘 <span class="pin">📍</span></div>
+        </a>
+        <div class="activity-desc">參觀集英社 Manga-Art Heritage JOJO 原畫展。</div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">19:00 - 19:20</span><br>
+        <span class="transport-line line-hibiya">日比谷線</span> <b>神谷町站 → 中目黑站</b> (直達約 11 分)<br>
+        <span class="walk-text">🚶‍♂️ 出站後步行約 3 分鐘抵達餐廳</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">19:30 - 21:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=麻布笄軒+中目黑" target="_blank" class="title-link">
+          <div class="activity-title">🍛 中目黑 麻布笄軒 <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-eat"><span>🍔</span><span><b>必吃推薦：</b>首推中目黑限定的「濃郁蛋汁歐姆漢堡排」！豪華拼盤也包含蟹肉奶油可樂餅與炸蝦，外酥內嫩！</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">21:00 - 21:40</span><br>
+        <span class="transport-line line-hibiya">日比谷線</span> 中目黑站 → 秋葉原站<br>
+        🔄 轉乘：<span class="transport-line line-jr">JR 總武線</span> 秋葉原站 → <b>錦糸町站</b><br>
+        <span class="walk-text">🚶‍♂️ 出站後步行約 5 分鐘抵達民宿與超市</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">21:40 以後</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=西友+錦糸町店" target="_blank" class="title-link">
+          <div class="activity-title">🏪 返回錦糸町民宿與超市 <span class="pin">📍</span></div>
+        </a>
+        <div class="activity-desc">洗個舒服的澡，下樓逛逛 24 小時的西友超市買鮮奶和零食。</div>
+      </div>
+    </div>
+
+    <div id="day2" class="day-view">
+      <div class="weather-card">
+        <div>📍 舞濱 (迪士尼)<br><span style="font-size:0.75rem; font-weight:normal;">海邊風大早晚微涼，記得攜帶薄外套與防曬。</span></div>
+        <div class="weather-icon">🌤️</div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">07:30 - 08:00</span><br>
+        <span class="walk-text">🚶‍♂️ 買完早餐，步行約 7 分鐘至錦糸町站北口巴士站</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">08:00 - 08:45</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=錦糸町駅北口+バス停" target="_blank" class="title-link">
+          <div class="activity-title">🚌 搭乘迪士尼直達巴士 <span class="pin">📍</span></div>
+        </a>
+        <div class="activity-desc">免去擠電車的煩惱，約 45 分鐘直達樂園門口。</div>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">09:00 - 21:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=東京迪士尼樂園" target="_blank" class="title-link">
+          <div class="activity-title">🏰 東京迪士尼樂園/海洋 <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-guide"><span>📖</span><span><b>導遊攻略：</b>入園後第一時間打開 App 購買 DPA 或抽取 Standby Pass！</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">21:30 - 22:30</span><br>
+        🚍 <b>迪士尼專線直達車 / JR 京葉線</b> 返回錦糸町<br>
+        <span class="walk-text">🚶‍♂️ 下車後步行約 5 分鐘前往南口吃宵夜</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">22:30 - 00:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=鳥貴族+錦糸町南口店" target="_blank" class="title-link">
+          <div class="activity-title">🍻 錦糸町南口 深夜食堂 <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-eat"><span>🍔</span><span><b>宵夜推薦：</b>穿拖鞋到「鳥貴族」點幾串均一價烤肉配啤酒，或是到「磯丸水產」點鮮甜蟹膏甲羅燒撫慰疲憊的雙腳！</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="day3" class="day-view">
+      <div class="weather-card">
+        <div>📍 池袋<br><span style="font-size:0.75rem; font-weight:normal;">室內逛街行程為主，無須擔心降雨！</span></div>
+        <div class="weather-icon">☁️</div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">10:30 - 11:15</span><br>
+        <span class="walk-text">🚶‍♂️ 從民宿步行 5 分鐘至錦糸町站</span><br>
+        <span class="transport-line line-jr">JR 總武線</span> 錦糸町 → 秋葉原<br>
+        🔄 轉乘：<span class="transport-line line-jr">JR 山手線</span> 秋葉原 → <b>池袋站</b><br>
+        <span class="walk-text">🚶‍♂️ 出站後步行約 8 分鐘抵達陽光城</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">11:30 - 14:30</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=ちいかわらんど+池袋サンシャインシティ店" target="_blank" class="title-link">
+          <div class="activity-title">🏢 陽光城 (吉伊卡哇樂園) <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-res"><span>🔴</span><span><b>購票注意：</b>吉伊卡哇樂園非常熱門，<b>務必提前上網預約買票</b>，現場不開放直接入內購買喔！</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">14:30 - 14:40</span><br>
+        <span class="walk-text">🚶‍♂️ 步行約 8 分鐘從陽光城前往池袋 PARCO</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">14:40 - 15:30</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=ちいかわラーメン+豚+池袋PARCO" target="_blank" class="title-link">
+          <div class="activity-title">🍜 吉伊卡哇拉麵豚 <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-res"><span>🔴</span><span><b>重要預約：</b>需提前 1-2 個月參與抽籤！</span></div>
+          <div class="tag tag-eat"><span>🍔</span><span><b>必吃推薦：</b>招牌的「拉麵豚」！吃完別忘了購買內用客專屬的限定拉麵碗。</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">15:40 - 15:50</span><br>
+        <span class="walk-text">🚶‍♂️ 享用完拉麵，步行約 5 分鐘抵達 Animate 總店</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">16:00 - 18:30</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=アニメイト池袋本店" target="_blank" class="title-link">
+          <div class="activity-title">🛍️ Animate 總店 & 西口挖寶 <span class="pin">📍</span></div>
+        </a>
+        <div class="activity-desc">全世界最大的動漫旗艦店，整棟逛完需要足夠的體力！</div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">18:40 - 18:50</span><br>
+        <span class="walk-text">🚶‍♂️ 逛完後步行約 5 分鐘前往文字燒餐廳</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">19:00 - 20:30</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=月島もんじゃ+もへじ+池袋" target="_blank" class="title-link">
+          <div class="activity-title">🥘 月島もんじゃもへじ (池袋店) <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-eat"><span>🍔</span><span><b>必吃推薦：</b>點一份「明太子麻糬起司文字燒」，店員會在桌邊華麗代烤，鍋巴的焦香配上牽絲的麻糬，人間美味！</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">20:30 - 21:10</span><br>
+        <span class="walk-text">🚶‍♂️ 步行回池袋站搭車</span><br>
+        <span class="transport-line line-jr">JR 山手線</span> 池袋 → 秋葉原<br>
+        🔄 轉乘：<span class="transport-line line-jr">JR 總武線</span> 秋葉原 → <b>錦糸町站</b><br>
+        <span class="walk-text">🚶‍♂️ 出站步行 3 分鐘至唐吉訶德</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">21:15 - 23:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=ドン・キホーテ+錦糸町北口店" target="_blank" class="title-link">
+          <div class="activity-title">🛒 錦糸町北口唐吉訶德 <span class="pin">📍</span></div>
+        </a>
+        <div class="activity-desc">免稅藥妝、零食大掃貨。這家開到凌晨 4 點，完全不用趕時間。</div>
+      </div>
+    </div>
+
+    <div id="day4" class="day-view">
       <div class="weather-card">
         <div>📍 富士山周邊<br><span style="font-size:0.75rem; font-weight:normal;">山區氣候多變，記得攜帶輕便防風外套！</span></div>
         <div class="weather-icon">🗻</div>
@@ -90,13 +390,18 @@
       <div class="transport-card">
         <span class="activity-time">07:30 - 07:40</span><br>
         <span class="walk-text">🚶‍♂️ 從民宿步行 5 分鐘至錦糸町站</span><br>
-        <span class="transport-line line-jr">JR 總武線快速</span> 錦糸町 → <b>東京站</b> (約 8 分)<br>
-        <span class="walk-text">🚶‍♂️ 抵達後步行 5 分鐘至集合點</span>
+        <span class="transport-line line-jr">JR 總武線快速</span> <b>錦糸町 → 東京站</b> (8分鐘直達)<br>
+        <span class="walk-text">🚶‍♂️ 抵達東京站後步行約 5 分鐘至 Klook 集合點</span>
       </div>
 
       <div class="card activity-card">
-        <span class="activity-time">08:00 - 10:30</span>
-        <div class="activity-title">🚌 包車出發前往富士山</div>
+        <span class="activity-time">08:00 - 19:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=東京駅" target="_blank" class="title-link">
+          <div class="activity-title">🚌 Klook 富士山小團包車 <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-guide"><span>📖</span><span><b>導遊廣播：</b>今天全程搭乘 Klook 包車，不用自己找路找車，只要跟著導遊在各個景點上下車就好囉！好好享受沿途風景吧！</span></div>
+        </div>
       </div>
 
       <div class="card activity-card">
@@ -107,10 +412,6 @@
         <div class="tags-container">
           <div class="tag tag-guide"><span>📖</span><span>停留 1 小時。經典的忠靈塔 + 富士山構圖就在這裡，雖然要爬樓梯但絕對值得！</span></div>
         </div>
-      </div>
-
-      <div class="transport-card">
-        🚌 乘車前往下吉田街道 (約 15 分)
       </div>
 
       <div class="card activity-card">
@@ -125,7 +426,7 @@
 
       <div class="card activity-card">
         <span class="activity-time">12:05 - 12:35</span>
-        <div class="activity-title">🍴 自由午餐時間 <span class="pin">📍</span></div>
+        <div class="activity-title">🍴 自由午餐時間 </div>
         <div class="tags-container">
           <div class="tag tag-eat"><span>🍔</span><span><b>溫暖推薦：</b>可在附近自行尋找特色吉田烏龍麵，或是簡單在超商解決，把體力留給下一站！</span></div>
         </div>
@@ -140,10 +441,6 @@
           <div class="tag tag-eat"><span>🍔</span><span><b>必吃推薦：</b>這裡的草餅和碳烤溪魚超級鮮甜，必試！</span></div>
           <div class="tag tag-guide"><span>📖</span><span>停留 1 小時。清澈見底的神池水，據說是富士山的雪水融化而成的。</span></div>
         </div>
-      </div>
-
-      <div class="transport-card">
-        🚌 乘車前往河口湖區域 (約 50 分)
       </div>
 
       <div class="card activity-card">
@@ -167,10 +464,10 @@
       </div>
 
       <div class="transport-card">
-        <span class="activity-time">17:30 - 19:00</span><br>
-        🚌 <b>回程：</b> 離開河口湖返回新宿。<br>
+        <span class="activity-time">17:30 - 19:15</span><br>
+        🚌 <b>Klook 包車回程：</b> 離開河口湖返回新宿。<br>
         📍 <b>解散點：</b> 新宿「東京MODE學園」前。<br>
-        <span class="walk-text">🚶‍♂️ 下車後步行約 5 分鐘抵達餐廳</span>
+        <span class="walk-text">🚶‍♂️ 下車後步行約 5 分鐘抵達伊吹壽喜燒</span>
       </div>
 
       <div class="card activity-card">
@@ -179,60 +476,310 @@
           <div class="activity-title">🍲 新宿 伊吹壽喜燒 <span class="pin">📍</span></div>
         </a>
         <div class="tags-container">
-          <div class="tag tag-eat"><span>🍔</span><span><b>必吃推薦：</b>A5 黑毛和牛壽喜燒 [cite: 49, 15]！犒賞一整天奔波的最佳美味。</span></div>
+          <div class="tag tag-res"><span>🔴</span><span><b>重要預約：</b>米其林推薦老店，請務必提前預約！</span></div>
+          <div class="tag tag-eat"><span>🍔</span><span><b>必吃推薦：</b>A5 黑毛和牛壽喜燒！犒賞一整天奔波的最佳美味。</span></div>
         </div>
       </div>
       
       <div class="transport-card">
         <span class="activity-time">21:00 - 21:40</span><br>
+        <span class="walk-text">🚶‍♂️ 步行約 5 分鐘至新宿站</span><br>
         <span class="transport-line line-jr">JR 中央・總武線</span> <b>新宿 → 錦糸町</b> (直達)<br>
         <span class="walk-text">🚶‍♂️ 步行 5 分鐘回民宿休息</span>
       </div>
     </div>
 
-    </main>
+    <div id="day5" class="day-view">
+      <div class="weather-card">
+        <div>📍 讀賣樂園・中野<br><span style="font-size:0.75rem; font-weight:normal;">遊樂園以戶外為主，留意防曬與補充水分。</span></div>
+        <div class="weather-icon">☀️</div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">08:45 - 09:50</span><br>
+        <span class="walk-text">🚶‍♂️ 步行 5 分鐘至錦糸町站</span><br>
+        <span class="transport-line line-jr">JR 總武線</span> 錦糸町 → 新宿<br>
+        🔄 轉乘：<span class="transport-line line-jr" style="background:#e84118;">京王線</span> 新宿 → <b>京王よみうりランド站</b><br>
+        <span class="walk-text">🚶‍♂️ 轉乘纜車或步行約 5 分鐘抵達樂園</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">10:00 - 18:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=よみうりランド" target="_blank" class="title-link">
+          <div class="activity-title">🐶 PokéPark KANTO 寶可夢樂園 <span class="pin">📍</span></div>
+        </a>
+        <div class="activity-desc">完美在現實世界還原「關都地區」，準備好待到閉園吧！</div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">18:15 - 19:10</span><br>
+        <span class="transport-line line-jr" style="background:#e84118;">京王線</span> 回新宿<br>
+        🔄 轉乘：<span class="transport-line line-jr">JR 中央線快速</span> 新宿 → <b>中野站</b><br>
+        <span class="walk-text">🚶‍♂️ 出站步行約 5 分鐘抵達中野百老匯</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">19:15 - 20:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=中野ブロードウェイ" target="_blank" class="title-link">
+          <div class="activity-title">🏬 中野百老匯 <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-guide"><span>📖</span><span><b>導遊攻略：</b>請「快攻」百老匯，多數中古店家會在 20:00 準時關門！</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">20:00 - 20:05</span><br>
+        <span class="walk-text">🚶‍♂️ 步行約 3 分鐘抵達餐廳</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">20:05 - 21:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=四文屋+中野" target="_blank" class="title-link">
+          <div class="activity-title">🍢 中野晚餐：四文屋 / 塚田農場 <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-eat"><span>🍔</span><span><b>必吃推薦：</b>中野平民美食天堂！四文屋的烤豬雜便宜又充滿香氣，塚田農場的炭火地雞是下酒絕佳良伴。</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">21:00 - 21:05</span><br>
+        <span class="walk-text">🚶‍♂️ 步行約 3 分鐘抵達酒吧</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">21:05 - 23:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=Bar+DIO+中野" target="_blank" class="title-link">
+          <div class="activity-title">🍸 Bar DIO (JOJO 酒吧) <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-eat"><span>🍔</span><span><b>必飲推薦：</b>大膽向調酒師說出喜歡的角色，特製「專屬替身調酒」！</span></div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        <span class="activity-time">23:00 以後</span><br>
+        <span class="walk-text">🚶‍♂️ 步行回中野站</span><br>
+        <span class="transport-line line-jr">JR 中央・總武線</span> <b>中野站 → 錦糸町站</b> (直達)<br>
+        <span class="walk-text">🚶‍♂️ 步行 5 分鐘回民宿</span>
+      </div>
+    </div>
+
+    <div id="day6" class="day-view">
+      <div class="weather-card">
+        <div>📍 新宿・原宿<br><span style="font-size:0.75rem; font-weight:normal;">最後一天採購日，祈禱是個大晴天！</span></div>
+        <div class="weather-icon">🌤️</div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">09:00 - 09:30</span><br>
+        <span class="walk-text">🚶‍♂️ 帶著行李步行 5 分鐘至錦糸町站</span><br>
+        <span class="transport-line line-jr">JR 總武線</span> <b>錦糸町站 → 新宿站</b>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">09:30 - 10:15</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=新宿駅+コインロッカー" target="_blank" class="title-link">
+          <div class="activity-title">🧳 新宿站：寄放行李 <span class="pin">📍</span></div>
+        </a>
+        <div class="activity-desc">先尋找大型置物櫃寄放行李，一身輕裝準備最後的血拼。</div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">10:15 - 11:30</span><br>
+        <span class="walk-text">🚶‍♂️ 行李放妥後，步行在新宿逛街，約步行 6 分鐘抵達餐廳</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">11:30 - 13:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=新宿焼肉+牛たんの檸檬" target="_blank" class="title-link">
+          <div class="activity-title">🍋 新宿 牛舌檸檬 <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-res"><span>🔴</span><span><b>重要預約：</b>建議提前 1 個月預約或一早線上抽整理券！</span></div>
+          <div class="tag tag-eat"><span>🍔</span><span><b>必吃推薦：</b>人氣第一的「極厚切牛舌定食」！備長炭烤出的牛舌外焦裡嫩。</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">13:00 - 13:25</span><br>
+        <span class="walk-text">🚶‍♂️ 步行回新宿站</span><br>
+        <span class="transport-line line-jr">JR 山手線</span> <b>新宿站 → 品川站</b> (約20分)<br>
+        <span class="walk-text">🚶‍♂️ 出站後步行約 5 分鐘抵達劇場</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">13:30 - 15:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=美少女戦士セーラームーン+Shining+Theater+品川" target="_blank" class="title-link">
+          <div class="activity-title">🌙 美少女戰士 Shining Theater <span class="pin">📍</span></div>
+        </a>
+        <div class="activity-desc">參與 6/22 月野兔生日特典場，絕無僅有！</div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">15:00 - 15:30</span><br>
+        <span class="walk-text">🚶‍♂️ 步行回品川站</span><br>
+        <span class="transport-line line-jr">JR 山手線</span> <b>品川站 → 原宿站</b><br>
+        <span class="walk-text">🚶‍♂️ 出站步行約 5 分鐘抵達原宿商圈</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">15:30 - 16:15</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=ちいかわベーカリー+原宿" target="_blank" class="title-link">
+          <div class="activity-title">🥐 吉伊卡哇麵包屋 (原宿) <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-star"><span>⭐</span><span><b>必訪重點：</b>超級可愛的吉伊卡哇造型麵包！</span></div>
+          <div class="tag tag-res"><span>🔴</span><span><b>重要預約：</b>強烈建議提前 1 個月參與抽籤！</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">16:15 - 16:20</span><br>
+        <span class="walk-text">🚶‍♂️ 步行約 5 分鐘抵達 Laforet 原宿</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">16:20 - 17:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=Sailor+Moon+Store+原宿" target="_blank" class="title-link">
+          <div class="activity-title">🌙 Sailor Moon Store 原宿本店 <span class="pin">📍</span></div>
+        </a>
+        <div class="tags-container">
+          <div class="tag tag-star"><span>⭐</span><span><b>必訪重點：</b>購買原宿店限定的水手月亮獨家周邊，為生日特典畫下完美句點。</span></div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">17:00 - 17:40</span><br>
+        <span class="walk-text">🚶‍♂️ 步行回原宿站</span><br>
+        <span class="transport-line line-jr">JR 山手線</span> <b>原宿站 → 新宿站</b><br>
+        <span class="walk-text">🚶‍♂️ 17:15 回新宿站領取行李，順便在百貨地下街買便當</span>
+      </div>
+
+      <div class="transport-card">
+        <span class="activity-time">18:00 - 19:20</span><br>
+        <span class="transport-line line-jr" style="background:#e74c3c;">N'EX 成田特快</span> <b>新宿站 → 成田機場</b><br>
+        📖 在舒適的對號座車廂內享用剛買好的豪華鐵路便當！
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">19:30 - 21:00</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=成田國際機場" target="_blank" class="title-link">
+          <div class="activity-title">✈️ 成田機場巡禮 & 賦歸 <span class="pin">📍</span></div>
+        </a>
+        <div class="activity-desc">逛逛 Pokemon Store 尋找機場限定的「機長皮卡丘」，搭乘 22:10 起飛的 MM627 班機飛往台灣，平安滿載而歸！</div>
+      </div>
+    </div>
+
+    <div id="tab-info" class="day-view">
+      <div class="info-group">
+        <div class="info-title">✈️ 航班資訊</div>
+        <p><b>去程 (06/17)：</b>捷星 GK012 (02:05 - 06:30)</p>
+        <p><b>回程 (06/22)：</b>樂桃 MM627 (22:10 - 00:55)</p>
+      </div>
+      <div class="info-group">
+        <div class="info-title">🏨 住宿基地</div>
+        <p><b>Sky 錦糸町 (Sky Kinshicho)</b></p>
+        <p>東京都墨田區江東橋2丁目1-4</p>
+        <hr style="border: 0; border-top: 1px dashed #eee; margin: 10px 0;">
+        <p><b>地理優勢：</b>位於錦糸町南口美食激戰區，下樓即有 Lawson、7-11 及 24 小時超市西友 (Seiyu)。</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Sky+Kinshicho+Tokyo" target="_blank" class="title-link" style="margin-top:15px; display:inline-block; font-weight:bold; color:var(--primary);">📍 點我開啟民宿地圖</a>
+      </div>
+    </div>
+
+    <div id="tab-checklist" class="day-view">
+      <div class="checklist-group">
+        <div class="checklist-title">🛂 重要證件與票券</div>
+        <label class="check-item"><input type="checkbox"> 護照 (有效期限需大於6個月)</label>
+        <label class="check-item"><input type="checkbox"> 實體/數位機票憑證</label>
+        <label class="check-item"><input type="checkbox"> Visit Japan Web (VJW) QR Code</label>
+        <label class="check-item"><input type="checkbox"> 各大餐廳/主題樂園 預約確認信</label>
+        <label class="check-item"><input type="checkbox"> 西瓜卡 (Suica) / 實體或綁定 Apple Pay</label>
+      </div>
+      
+      <div class="checklist-group">
+        <div class="checklist-title">💰 財務與通訊</div>
+        <label class="check-item"><input type="checkbox"> 日幣現金 (約 5-8 萬日圓備用)</label>
+        <label class="check-item"><input type="checkbox"> 信用卡 (建議準備 JCB 與 Visa)</label>
+        <label class="check-item"><input type="checkbox"> 日本上網 SIM 卡 / eSIM</label>
+        <label class="check-item"><input type="checkbox"> 行動電源 (必備！找路與拍照很耗電)</label>
+        <label class="check-item"><input type="checkbox"> 轉接頭/充電線</label>
+      </div>
+
+      <div class="checklist-group">
+        <div class="checklist-title">👕 衣物與日常用品</div>
+        <label class="check-item"><input type="checkbox"> 輕薄防曬外套 (6月日本早晚溫差大)</label>
+        <label class="check-item"><input type="checkbox"> 輕便摺疊雨傘 (梅雨季必備)</label>
+        <label class="check-item"><input type="checkbox"> 好走的運動鞋 (每天至少走 1.5 萬步)</label>
+        <label class="check-item"><input type="checkbox"> 隨身小包包 / 環保袋 (裝扭蛋或戰利品)</label>
+        <label class="check-item"><input type="checkbox"> 常備藥品 (止痛藥、腸胃藥、休足時間)</label>
+      </div>
+    </div>
+
+  </main>
 
   <nav class="bottom-nav">
-    <div class="nav-item active" onclick="switchTab('itinerary', this)">
+    <div class="nav-item active" id="nav-itinerary" onclick="switchTab('itinerary', this)">
       <span class="nav-icon">📅</span>行程
     </div>
-    <div class="nav-item" onclick="switchTab('info', this)">
+    <div class="nav-item" id="nav-info" onclick="switchTab('info', this)">
       <span class="nav-icon">🧳</span>航班住宿
     </div>
-    <div class="nav-item" onclick="switchTab('checklist', this)">
+    <div class="nav-item" id="nav-checklist" onclick="switchTab('checklist', this)">
       <span class="nav-icon">🎒</span>清單
     </div>
   </nav>
 </div>
 
 <script>
-  let currentActiveDay = 4; // 預設顯示 D4 以方便您檢查更新
+  let currentActiveDay = 1;
+
+  document.querySelectorAll('.check-item input').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      if(this.checked) {
+        this.parentElement.classList.add('done');
+      } else {
+        this.parentElement.classList.remove('done');
+      }
+    });
+  });
+
   function showDay(dayNum, btn) {
     currentActiveDay = dayNum;
     document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+    
     document.querySelectorAll('.day-view').forEach(v => v.classList.remove('active'));
     document.getElementById('day' + dayNum).classList.add('active');
+    
     resetBottomNav();
-    document.querySelector('.nav-item').classList.add('active');
+    document.getElementById('nav-itinerary').classList.add('active');
     document.getElementById('day-bar').style.display = 'flex';
   }
+
   function switchTab(tabName, el) {
     resetBottomNav();
     el.classList.add('active');
+
     document.querySelectorAll('.day-view').forEach(v => v.classList.remove('active'));
+
     if (tabName === 'itinerary') {
       const activeBtn = document.querySelectorAll('.day-btn')[currentActiveDay - 1];
       showDay(currentActiveDay, activeBtn);
-    } else {
-      document.getElementById('tab-' + tabName).classList.add('active');
+    } else if (tabName === 'info') {
+      document.getElementById('tab-info').classList.add('active');
+      document.getElementById('day-bar').style.display = 'none';
+    } else if (tabName === 'checklist') {
+      document.getElementById('tab-checklist').classList.add('active');
       document.getElementById('day-bar').style.display = 'none';
     }
   }
-  function resetBottomNav() { document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active')); }
-  document.querySelectorAll('.check-item input').forEach(checkbox => {
-    checkbox.addEventListener('change', function() { this.parentElement.classList.toggle('done', this.checked); });
-  });
+
+  function resetBottomNav() {
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  }
 </script>
+
 </body>
 </html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>2026 東京二次元手帳</title>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #FF8EAF;
+    --bg-pink: #FFF5F8;
+    --text-main: #5C4B51;
+    --transit: #A0C4FF;
+    --food: #FFADAD;
+    --attraction: #CAFFBF;
+  }
+  * { box-sizing: border-box; }
+  body, html { margin: 0; padding: 0; height: 100%; background-color: #f7f7f7; font-family: 'M PLUS Rounded 1c', sans-serif; }
+  .app-container {
+    max-width: 480px; margin: 0 auto; height: 100vh; display: flex; flex-direction: column;
+    background: var(--bg-pink); color: var(--text-main); position: relative; overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+  header { background: var(--primary); color: white; padding: 15px; text-align: center; font-weight: bold; font-size: 1.2rem; }
+  main { flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 80px; }
+  
+  /* Tabs */
+  .tab-content { display: none; animation: fadeIn 0.3s ease; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+  
+  /* Bottom Nav */
+  .bottom-nav {
+    position: absolute; bottom: 0; width: 100%; height: 65px; background: white;
+    border-top: 2px solid #FFE4E1; display: flex; justify-content: space-around; align-items: center; z-index: 10;
+  }
+  .nav-item { text-align: center; font-size: 0.8rem; cursor: pointer; color: #AAA; flex: 1; padding: 10px 0; }
+  .nav-item.active { color: var(--primary); font-weight: bold; }
+  .nav-icon { font-size: 1.5rem; display: block; margin-bottom: 2px; }
+  
+  /* Weather Banner */
+  .weather-banner { background: white; border-radius: 12px; padding: 10px; text-align: center; font-size: 0.85rem; color: var(--primary); margin-bottom: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(255,142,175,0.2); border: 1px dashed var(--primary); }
+  
+  /* Day Header */
+  .day-header { font-size: 1.1rem; font-weight: bold; margin: 25px 0 15px; padding-bottom: 5px; border-bottom: 2px solid #FFE4E1; display: flex; align-items: center; }
+  
+  /* Cards */
+  .card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 8px rgba(255,142,175,0.1); border-left: 6px solid #ccc; }
+  .card.transit { border-left-color: var(--transit); }
+  .card.food { border-left-color: var(--food); }
+  .card.attraction { border-left-color: var(--attraction); }
+  
+  .card-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .card-time { font-size: 0.85rem; color: #888; font-weight: bold; }
+  .card-type { font-size: 0.75rem; padding: 2px 6px; border-radius: 8px; background: #eee; }
+  .transit .card-type { background: #E1F0FF; color: #3A86FF; }
+  .food .card-type { background: #FFE5E5; color: #E63946; }
+  .attraction .card-type { background: #E8FFEB; color: #2D6A4F; }
+  
+  .card-title { font-size: 1rem; font-weight: bold; margin-bottom: 8px; }
+  .card-desc { font-size: 0.85rem; line-height: 1.5; margin-bottom: 10px; color: #666; }
+  
+  /* Tags */
+  .tags { margin-bottom: 10px; }
+  .tag { font-size: 0.75rem; padding: 4px 8px; border-radius: 12px; display: inline-block; margin: 0 4px 4px 0; font-weight: bold; }
+  .tag-eat { background: #FFE4E1; color: #D87093; }
+  .tag-buy { background: #FFFACD; color: #B8860B; }
+  .tag-res { background: #E0FFFF; color: #008B8B; }
+  .tag-story { background: #F3E5F5; color: #8E24AA; }
+  
+  .btn-nav { display: block; text-align: center; background: var(--bg-pink); color: var(--primary); text-decoration: none; padding: 8px; border-radius: 8px; font-size: 0.85rem; font-weight: bold; border: 1px solid var(--primary); margin-top: 10px; }
+  
+  /* Form & Tables for other tabs */
+  .info-box { background: white; padding: 15px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+  h3 { margin-top: 0; color: var(--primary); font-size: 1rem; }
+  ul { padding-left: 20px; font-size: 0.9rem; color: #555; }
+  li { margin-bottom: 5px; }
+  
+  /* Budget Tracker */
+  input, select, button { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+  button.add-btn { background: var(--primary); color: white; border: none; font-weight: bold; }
+  .budget-list { list-style: none; padding: 0; margin-top: 15px; }
+  .budget-item { display: flex; justify-content: space-between; padding: 10px; background: #FFF5F8; margin-bottom: 5px; border-radius: 8px; font-size: 0.9rem; }
+  .total-expense { text-align: right; font-size: 1.2rem; font-weight: bold; color: #E63946; margin-top: 15px; }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <header>🌸 2026 東京手帳</header>
+
+  <main>
+    <div id="tab-itinerary" class="tab-content active">
+      <div class="weather-banner">🌤️ 預報：東京 6月均溫 22~26°C (初夏微雨，請備摺疊傘)</div>
+
+      <div class="day-header">🎀 Day 1: 06/17 (三) - 銀座和牛與潮流澀谷</div>
+      
+      <div class="card transit">
+        <div class="card-header"><span class="card-time">06:30 - 07:30</span><span class="card-type">🚆 交通</span></div>
+        <div class="card-title">抵達成田機場 & 前往市區</div>
+        <div class="card-desc">06:30 抵達成田機場辦理入境。07:30 搭乘「京成成田 Skyaccess」直達押上站轉乘至錦糸町民宿寄放行李。</div>
+      </div>
+
+      <div class="card food">
+        <div class="card-header"><span class="card-time">11:30</span><span class="card-type">🍽️ 餐廳</span></div>
+        <div class="card-title">燒肉 INOUE (銀座店)</div>
+        <div class="card-desc">享用高CP值午間和牛套餐。</div>
+        <div class="tags">
+          <span class="tag tag-eat">🔥 必點：和牛蓋飯三吃、瞬間燻製生拌牛肉</span>
+          <span class="tag tag-res">⚠️ 重要：建議提前1個月預約</span>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=燒肉+INOUE+銀座" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="card attraction">
+        <div class="card-header"><span class="card-time">14:00 - 17:00</span><span class="card-type">🏰 景點</span></div>
+        <div class="card-title">澀谷 PARCO 6F</div>
+        <div class="card-desc">動漫聖地：JOJO WORLD、Nintendo TOKYO、Pokemon Center SHIBUYA。</div>
+        <div class="tags"><span class="tag tag-story">📖 攻略：任天堂旗艦店人潮眾多，建議一到立刻抽整理券！</span></div>
+        <a href="https://www.google.com/maps/search/?api=1&query=澀谷PARCO" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="card attraction">
+        <div class="card-header"><span class="card-time">17:30</span><span class="card-type">🏰 景點</span></div>
+        <div class="card-title">麻布台之丘</div>
+        <div class="card-desc">參觀集英社 Manga-Art Heritage JOJO 原畫展。</div>
+        <a href="https://www.google.com/maps/search/?api=1&query=麻布台之丘" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="card food">
+        <div class="card-header"><span class="card-time">19:30</span><span class="card-type">🍽️ 餐廳</span></div>
+        <div class="card-title">中目黑 麻布笄軒</div>
+        <div class="tags"><span class="tag tag-eat">🍳 必點：招牌漢堡排蛋包飯 (大正浪漫風洋食)</span></div>
+        <a href="https://www.google.com/maps/search/?api=1&query=麻布笄軒+中目黑" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="day-header">🎀 Day 2: 06/18 (四) - 迪士尼樂園全日大戰</div>
+      <div class="card attraction">
+        <div class="card-header"><span class="card-time">09:00 - 21:00</span><span class="card-type">🏰 景點</span></div>
+        <div class="card-title">東京迪士尼樂園 / 海洋</div>
+        <div class="card-desc">08:00 於錦糸町站北口搭乘「迪士尼直達巴士」。全日暢遊樂園。</div>
+        <a href="https://www.google.com/maps/search/?api=1&query=東京迪士尼樂園" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="card food">
+        <div class="card-header"><span class="card-time">22:30</span><span class="card-type">🍽️ 宵夜</span></div>
+        <div class="card-title">錦糸町南口 深夜食堂</div>
+        <div class="card-desc">穿拖鞋出門！選項：鳥貴族(串燒)、磯丸水產(烤海鮮) 或 滿月文字燒。</div>
+        <div class="tags"><span class="tag tag-eat">🍢 推薦：鳥貴族均一價、磯丸水產必點蟹膏甲羅燒</span></div>
+      </div>
+
+      <div class="day-header">🎀 Day 3: 06/19 (五) - 池袋吉伊卡哇狂熱日</div>
+      <div class="card food">
+        <div class="card-header"><span class="card-time">14:30 - 15:30</span><span class="card-type">🍽️ 餐廳</span></div>
+        <div class="card-title">吉伊卡哇拉麵豚 (池袋)</div>
+        <div class="tags">
+          <span class="tag tag-eat">🍜 必點：拉麵豚 (油麵附古本屋魚板)</span>
+          <span class="tag tag-buy">🛍️ 必買：限定周邊拉麵碗 (限內用客購買)</span>
+          <span class="tag tag-res">⚠️ 重要：建議提前1-2個月抽籤</span>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=吉伊卡哇拉麵豚+池袋" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="card food">
+        <div class="card-header"><span class="card-time">19:00</span><span class="card-type">🍽️ 餐廳</span></div>
+        <div class="card-title">月島もんじゃもへじ (池袋店)</div>
+        <div class="tags">
+          <span class="tag tag-eat">🔥 必點：專人代烤明太子麻糬文字燒</span>
+          <span class="tag tag-res">⚠️ 建議：提前網路預約</span>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=月島もんじゃもへじ+池袋" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="day-header">🎀 Day 4: 06/20 (六) - 富士山絕景與和牛壽喜燒</div>
+      <div class="card attraction">
+        <div class="card-header"><span class="card-time">08:00 - 19:00</span><span class="card-type">🏰 景點</span></div>
+        <div class="card-title">Klook 富士山包車一日遊</div>
+        <div class="card-desc">07:40 搭 JR 快速至東京車站。08:00 集合參加行程 (忍野八海、羅森、大石公園)。19:00 新宿下車。</div>
+      </div>
+
+      <div class="card food">
+        <div class="card-header"><span class="card-time">19:30</span><span class="card-type">🍽️ 餐廳</span></div>
+        <div class="card-title">新宿 伊吹 (Ibuki) 壽喜燒</div>
+        <div class="tags">
+          <span class="tag tag-eat">🥩 必吃：A5 國產黑毛和牛壽喜燒</span>
+          <span class="tag tag-story">📖 故事：創業於昭和25年的米其林推薦老字號名店</span>
+          <span class="tag tag-res">⚠️ 建議：提前預約</span>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=伊吹+壽喜燒+新宿" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="day-header">🎀 Day 5: 06/21 (日) - 寶可夢樂園與中野 JOJO 之夜</div>
+      <div class="card attraction">
+        <div class="card-header"><span class="card-time">10:00 - 18:00</span><span class="card-type">🏰 景點</span></div>
+        <div class="card-title">PokéPark KANTO 寶可夢樂園</div>
+        <div class="card-desc">地點：讀賣樂園。待到閉園。</div>
+        <a href="https://www.google.com/maps/search/?api=1&query=讀賣樂園" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="card attraction">
+        <div class="card-header"><span class="card-time">19:15</span><span class="card-type">🏰 景點</span></div>
+        <div class="card-title">中野百老匯</div>
+        <div class="tags"><span class="tag tag-story">⚠️ 攻略：快攻！多數店家晚上 20:00 就會關門</span></div>
+        <a href="https://www.google.com/maps/search/?api=1&query=中野百老匯" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="card food">
+        <div class="card-header"><span class="card-time">21:00</span><span class="card-type">🍸 酒吧</span></div>
+        <div class="card-title">Bar DIO</div>
+        <div class="tags">
+          <span class="tag tag-eat">🍹 必點：請調酒師為你製作「專屬替身調酒」</span>
+          <span class="tag tag-story">📖 亮點：JOJO 迷此生必朝聖的主題酒吧</span>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Bar+DIO+中野" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="day-header">🎀 Day 6: 06/22 (一) - 月野兔生日特典與完美收尾</div>
+      <div class="card food">
+        <div class="card-header"><span class="card-time">11:30</span><span class="card-type">🍽️ 餐廳</span></div>
+        <div class="card-title">新宿 牛舌檸檬</div>
+        <div class="tags">
+          <span class="tag tag-eat">🥩 必點：厚切牛舌定食 (享用午間優惠價格)</span>
+          <span class="tag tag-res">⚠️ 重要：建議提前1個月預約 (強烈建議線上抽整理券)</span>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=新宿+牛舌之檸檬" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="card attraction">
+        <div class="card-header"><span class="card-time">13:30 - 15:00</span><span class="card-type">🏰 景點</span></div>
+        <div class="card-title">美少女戰士 Shining Theater</div>
+        <div class="card-desc">品川站。參與 6/22 月野兔生日特典場。</div>
+        <a href="https://www.google.com/maps/search/?api=1&query=品川站" target="_blank" class="btn-nav">📍 開啟導航</a>
+      </div>
+
+      <div class="card transit">
+        <div class="card-header"><span class="card-time">22:10</span><span class="card-type">🚆 交通</span></div>
+        <div class="card-title">樂桃 MM627 飛往台灣</div>
+        <div class="card-desc">18:00 搭乘 N'EX (成田特快) 前往成田機場。19:30 進行最後巡禮 (Pokemon Store 機長皮卡丘)。22:10 起飛。</div>
+      </div>
+
+    </div>
+
+    <div id="tab-info" class="tab-content">
+      <div class="info-box">
+        <h3>✈️ 航班資訊</h3>
+        <ul>
+          <li><strong>去程 (06/17)：</strong>捷星 GK012 (02:05 起飛 - 06:30 抵達成田)</li>
+          <li><strong>回程 (06/22)：</strong>樂桃 MM627 (22:10 起飛 - 00:55 抵達台灣)</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h3>🏨 住宿基地</h3>
+        <ul>
+          <li><strong>名稱：</strong>Sky 錦糸町 (Sky Kinshicho)</li>
+          <li><strong>地址：</strong>東京都墨田區江東橋2丁目1-4</li>
+          <li><strong>優勢：</strong>位於南口美食激戰區，樓下有 Lawson、7-11 及 24 小時西友超市。</li>
+        </ul>
+        <a href="https://www.google.com/maps/search/?api=1&query=東京都墨田區江東橋2丁目1-4" target="_blank" class="btn-nav">📍 導航至民宿</a>
+      </div>
+
+      <div class="info-box">
+        <h3>📞 緊急聯絡電話</h3>
+        <ul>
+          <li>報警：110</li>
+          <li>火警 / 救護車：119</li>
+          <li>台北駐日經濟文化代表處：(03) 3280-7811</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="tab-budget" class="tab-content">
+      <div class="info-box">
+        <h3>💰 旅費記帳本</h3>
+        <input type="text" id="expense-name" placeholder="項目 (例如: 吉伊卡哇拉麵)">
+        <input type="number" id="expense-amount" placeholder="金額 (日圓 JPY)">
+        <button class="add-btn" onclick="addExpense()">➕ 新增花費</button>
+        
+        <ul class="budget-list" id="expense-list">
+          </ul>
+        <div class="total-expense">總花費：¥ <span id="total-jpy">0</span></div>
+      </div>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <div class="nav-item active" onclick="switchTab('tab-itinerary', this)">
+      <span class="nav-icon">🌸</span>行程
+    </div>
+    <div class="nav-item" onclick="switchTab('tab-info', this)">
+      <span class="nav-icon">🧳</span>資訊
+    </div>
+    <div class="nav-item" onclick="switchTab('tab-budget', this)">
+      <span class="nav-icon">💰</span>記帳
+    </div>
+  </nav>
+</div>
+
+<script>
+  function switchTab(tabId, el) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    el.classList.add('active');
+  }
+
+  let total = 0;
+  function addExpense() {
+    const name = document.getElementById('expense-name').value;
+    const amount = parseInt(document.getElementById('expense-amount').value);
+    
+    if (name && amount) {
+      const list = document.getElementById('expense-list');
+      const li = document.createElement('li');
+      li.className = 'budget-item';
+      li.innerHTML = `<span>${name}</span> <span>¥${amount.toLocaleString()}</span>`;
+      list.appendChild(li);
+      
+      total += amount;
+      document.getElementById('total-jpy').innerText = total.toLocaleString();
+      
+      document.getElementById('expense-name').value = '';
+      document.getElementById('expense-amount').value = '';
+    } else {
+      alert("請輸入項目與金額！");
+    }
+  }
+</script>
+
+</body>
+</html>

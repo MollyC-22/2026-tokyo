@@ -11,7 +11,6 @@
     --bg-pink: #FFF5F8;
     --text-main: #4A3A40;
     
-    /* 交通線路專屬顏色 */
     --jr-yellow: #f1c40f;
     --jr-green: #2ecc71;
     --jr-blue: #0073CF;
@@ -49,13 +48,41 @@
   .day-view.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+  .weather-card {
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    border-radius: 15px; padding: 12px 15px; margin-bottom: 18px; color: white;
+    font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(142, 197, 252, 0.4);
+  }
+  .weather-icon { font-size: 1.5rem; }
+
   .card { background: white; border-radius: 18px; padding: 16px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(255,117,151,0.08); position: relative; border: 1px solid #FFF0F5; }
   
   .activity-card { border-left: 6px solid var(--primary); }
   .activity-time { font-weight: 900; color: var(--primary); font-size: 0.95rem; margin-bottom: 6px; display: block; }
-  .activity-title { font-size: 1.1rem; font-weight: 900; margin-bottom: 10px; color: #333; }
+  .activity-title { font-size: 1.1rem; font-weight: 900; margin-bottom: 8px; color: #333; }
   
-  /* 交通專屬卡片優化 */
+  /* 標題連結樣式：手帳風虛線 */
+  .map-link {
+    color: #333;
+    text-decoration: none;
+    border-bottom: 2px dashed #FFB6C1;
+    padding-bottom: 2px;
+    display: inline-block;
+    transition: 0.2s;
+  }
+  .map-link:active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    opacity: 0.7;
+  }
+  .map-link::after {
+    content: ' 📍';
+    font-size: 0.9rem;
+  }
+
+  .activity-desc { font-size: 0.85rem; color: #666; margin-bottom: 10px; line-height: 1.5; }
+  
   .transport-card {
     background: #f8fafd; border: 1px dashed #b9d4f1; padding: 12px 15px; border-radius: 15px;
     margin: -5px 0 20px 15px; position: relative; font-size: 0.88rem; line-height: 1.7; color: #444;
@@ -78,15 +105,18 @@
   .bg-keio { background: #E6005C; }
   .bg-bus { background: #16a085; }
 
-  /* 導遊與備案按鈕 */
-  .tags-container { display: flex; flex-direction: column; gap: 6px; margin-bottom: 8px; }
+  /* Tags */
+  .tags-container { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
   .tag { font-size: 0.8rem; padding: 6px 10px; border-radius: 8px; font-weight: 700; display: inline-flex; align-items: flex-start; line-height: 1.4; }
   .tag-eat { background: #FFF3E0; color: #E65100; border-left: 4px solid #FF9800; }
+  .tag-buy { background: #E0F2F1; color: #00695C; border-left: 4px solid #26A69A; }
+  .tag-guide { background: #F3E5F5; color: #4A148C; border-left: 4px solid #9C27B0; }
   .tag-res { background: #FFEBEE; color: #C62828; border-left: 4px solid #F44336; font-weight: 900; }
-  
-  .btn-backup { display: block; text-align: left; background: #FFF; color: #555; text-decoration: none; padding: 12px; border-radius: 12px; font-size: 0.9rem; font-weight: bold; border: 1.5px solid #eee; margin-bottom: 8px; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+
+  .btn-backup { display: block; text-align: left; background: #FFF; color: #555; text-decoration: none; padding: 12px; border-radius: 12px; font-size: 0.9rem; font-weight: bold; border: 1.5px solid #eee; margin-bottom: 8px; transition: 0.2s; position: relative;}
   .btn-backup:active { background: #f9f9f9; transform: scale(0.98); }
   .btn-backup span { font-size: 1.2rem; margin-right: 8px; }
+  .btn-backup .hours { display: block; font-size: 0.75rem; color: #888; margin-top: 4px; font-weight: normal; }
   
   .bottom-nav {
     position: absolute; bottom: 0; width: 100%; height: 70px; background: white;
@@ -118,10 +148,15 @@
   <main id="main-content">
     
     <div id="day1" class="day-view active">
+      <div class="weather-card">
+        <div>📍 銀座・澀谷<br><span style="font-size:0.75rem; font-weight:normal;">6月均溫 22~26°C (初夏梅雨季，請帶折疊傘)</span></div>
+        <div class="weather-icon">🌧️</div>
+      </div>
+
       <div class="card activity-card">
         <span class="activity-time">06:30</span>
         <div class="activity-title">🛬 抵達成田機場</div>
-        <p style="font-size:0.85rem; color:#666;">辦理入境、拿行李。</p>
+        <div class="activity-desc">辦理入境、拿行李。</div>
       </div>
 
       <div class="transport-card">
@@ -138,10 +173,23 @@
       </div>
 
       <div class="card activity-card">
-        <span class="activity-time">11:30</span>
-        <div class="activity-title">🥩 燒肉 INOUE 銀座店</div>
+        <span class="activity-time">10:00</span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=銀座木村家" target="_blank" class="map-link">🥐 銀座木村家 早餐</a>
+        </div>
         <div class="tags-container">
-          <div class="tag tag-res">預約制，午間套餐。</div>
+          <div class="tag tag-eat">🍔 必點菜單：招牌「酒種紅豆麵包」，保留百年明治天皇也愛的傳統發酵工法。</div>
+        </div>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">11:30</span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=燒肉INOUE+銀座店" target="_blank" class="map-link">🥩 燒肉 INOUE 銀座店</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-res">🔴 預約提示：預約制，請務必準時抵達。</div>
+          <div class="tag tag-eat">🍔 必點菜單：午間限定「和牛蓋飯三吃」、瞬間燻製生拌牛肉。</div>
         </div>
       </div>
 
@@ -153,8 +201,13 @@
 
       <div class="card activity-card">
         <span class="activity-time">14:00</span>
-        <div class="activity-title">🎮 澀谷 PARCO 6F (動漫聖地)</div>
-        <p style="font-size:0.85rem; color:#666;">JOJO WORLD、任天堂、寶可夢中心。</p>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=澀谷PARCO" target="_blank" class="map-link">🎮 澀谷 PARCO 6F</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-buy">🛍️ 必買推薦：Nintendo TOKYO 獨家周邊、Pokemon Center 澀谷限定「塗鴉皮卡丘」。</div>
+          <div class="tag tag-guide">📖 導遊攻略：寶可夢入口有超夢機關人偶必拍！任天堂館強烈建議先抽整理券。同樓層還有 JOJO WORLD。</div>
+        </div>
       </div>
 
       <div class="transport-card">
@@ -165,47 +218,84 @@
       </div>
 
       <div class="card activity-card">
-        <span class="activity-time">17:30</span>
-        <div class="activity-title">🖼️ 麻布台之丘</div>
-        <p style="font-size:0.85rem; color:#666;">參觀集英社 JOJO 原畫展。</p>
-      </div>
-
-      <div class="transport-card">
-        🚶‍♂️ <b>麻布台之丘 ➔ 中目黑</b><br>
-        <span class="line-badge bg-metro-hibiya">日比谷線</span> 神谷町 → 中目黑 (一線直達)<br>
-        🕒 車程：約 15 分鐘
-      </div>
-
-      <div class="card activity-card">
-        <span class="activity-time">19:30</span>
-        <div class="activity-title">🍛 麻布笄軒 中目黑店</div>
+        <span class="activity-time">17:30 - 19:00</span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=麻布台之丘" target="_blank" class="map-link">🖼️ 麻布台之丘</a>
+        </div>
         <div class="tags-container">
-          <div class="tag tag-eat">漢堡排蛋包飯</div>
+          <div class="tag tag-guide">📖 導遊故事：日本最新第一高樓，重點行程為集英社 Manga-Art Heritage JOJO 原畫展！</div>
         </div>
       </div>
 
       <div class="transport-card">
-        🚶‍♂️ <b>中目黑 ➔ 錦糸町 (回程)</b><br>
-        <span class="line-badge bg-metro-hibiya">日比谷線</span> 中目黑 → 日比谷<br>
-        🔄 同站轉乘：<span class="line-badge bg-metro-hanzomon">半藏門線</span> 日比谷 → 錦糸町
+        🚶‍♂️ <b>麻布台之丘 ➔ 錦糸町 (回大本營)</b><br>
+        <span class="line-badge bg-metro-hibiya">日比谷線</span> 神谷町 → 秋葉原<br>
+        🔄 轉乘：<span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 秋葉原 → 錦糸町<br>
+        🕒 動線單純，車程約 30 分鐘
+      </div>
+
+      <div class="card activity-card" style="border-left-color: #ff9f43;">
+        <span class="activity-time" style="color: #ff9f43;">19:30</span>
+        <div class="activity-title">🍽️ 晚餐備案：錦糸町大本營</div>
+        <p style="font-size:0.8rem; color:#888; margin-bottom:10px;">看完展覽直接回大本營！(點擊可導航)</p>
+        
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もり一+錦糸町店')">
+          <span>🍣</span> もり一 (Moriichi) 錦糸町店
+          <div class="tag tag-eat" style="margin-top:5px;">特色：紅醋飯高CP迴轉壽司</div>
+          <span class="hours">🕒 營業：11:00 - 22:00</span>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=真鯛らーめん+麺魚+錦糸町本店')">
+          <span>🍜</span> 真鯛らーめん 麺魚
+          <div class="tag tag-eat" style="margin-top:5px;">特色：超濃厚真鯛魚湯拉麵</div>
+          <span class="hours">🕒 營業：11:00 - 20:30 (打烊較早)</span>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=月島もんじゃ+はる+錦糸町本店')">
+          <span>🥘</span> 月島もんじゃ はる (Haru)
+          <div class="tag tag-eat" style="margin-top:5px;">特色：明太子起司文字燒</div>
+          <span class="hours">🕒 營業：17:00 - 翌05:00</span>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=玉金+錦糸町')">
+          <span>🍳</span> 玉金 (Tamakin) 
+          <div class="tag tag-eat" style="margin-top:5px;">特色：平價鐵板燒與串燒</div>
+          <span class="hours">🕒 營業：本店至 0:00 / 分店至翌 1:00</span>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もんじゃ+お好み焼+満月+錦糸町')">
+          <span>🥢</span> もんじゃ お好み焼 満月
+          <div class="tag tag-eat" style="margin-top:5px;">特色：在地溫馨風文字燒</div>
+          <span class="hours">🕒 營業：晚餐時段至深夜</span>
+        </div>
       </div>
     </div>
 
     <div id="day2" class="day-view">
+      <div class="weather-card">
+        <div>📍 舞濱 (東京迪士尼)<br><span style="font-size:0.75rem; font-weight:normal;">海邊風大早晚微涼，記得攜帶防曬與薄外套。</span></div>
+        <div class="weather-icon">🌤️</div>
+      </div>
+
       <div class="card activity-card">
         <span class="activity-time">07:30</span>
         <div class="activity-title">🍙 早餐：民宿樓下 Lawson</div>
+        <div class="tags-container">
+          <div class="tag tag-eat">🍔 必買：炸雞君 (からあげクン) 或明太子飯糰。</div>
+        </div>
       </div>
 
       <div class="transport-card">
         🚶‍♂️ <b>錦糸町民宿 ➔ 迪士尼樂園</b><br>
         <span class="line-badge bg-bus">迪士尼直達巴士</span> 錦糸町北口巴士站上車<br>
-        🕒 車程：約 45 分鐘 (上車睡覺)
+        🕒 車程：約 45 分鐘 (上車補眠)
       </div>
 
       <div class="card activity-card">
         <span class="activity-time">09:00 - 21:00</span>
-        <div class="activity-title">🏰 東京迪士尼樂園</div>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=東京迪士尼樂園" target="_blank" class="map-link">🏰 東京迪士尼樂園</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：入園第一時間用 App 買好 DPA 或抽 Standby Pass！</div>
+          <div class="tag tag-eat">🍔 必點美食：三眼怪麻糬、煙燻火雞腿、米奇造型吉拿棒。</div>
+        </div>
       </div>
 
       <div class="transport-card">
@@ -217,21 +307,37 @@
       <div class="card activity-card" style="border-left-color: #ff9f43;">
         <span class="activity-time" style="color: #ff9f43;">22:00</span>
         <div class="activity-title">🍻 宵夜備案：錦糸町南口</div>
-        <p style="font-size:0.8rem; color:#888; margin-bottom:10px;">看心情三選一！(點擊直接導航)</p>
+        <p style="font-size:0.8rem; color:#888; margin-bottom:10px;">體力耗盡！選一家回血！(點擊可導航)</p>
         
-        <a href="https://www.google.com/search?q=https://www.google.com/maps/search/%3Fapi%3D1%26query%3D%E9%B3%A5%E8%B2%B4%E6%97%8F%2B%E9%8C%A6%E7%B3%B8%E7%94%BA%E5%8D%97%E5%8F%A3%E5%BA%97" target="_blank" class="btn-backup">
-          <span>🍗</span> 想吃平價烤肉：鳥貴族
-        </a>
-        <a href="https://www.google.com/search?q=https://www.google.com/maps/search/%3Fapi%3D1%26query%3D%E7%A3%AF%E4%B8%B8%E6%B0%B4%E7%94%A3%2B%E9%8C%A6%E7%B3%B8%E7%94%BA%E5%8D%97%E5%8F%A3%E5%BA%97" target="_blank" class="btn-backup">
-          <span>🦀</span> 想自己烤海鮮：磯丸水產
-        </a>
-        <a href="https://www.google.com/search?q=https://www.google.com/maps/search/%3Fapi%3D1%26query%3D%E3%82%82%E3%82%93%E3%81%98%E3%82%83%2B%E3%81%8A%E5%A5%BD%E3%81%BF%E7%84%BC%2B%E6%BA%80%E6%9C%88%2B%E9%8C%A6%E7%B3%B8%E7%94%BA" target="_blank" class="btn-backup">
-          <span>🍳</span> 想吃文字燒：滿月文字燒
-        </a>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=鳥貴族+錦糸町南口店')">
+          <span>🍗</span> 鳥貴族 錦糸町南口店
+          <div class="tag tag-eat" style="margin-top:5px;">必點：均一價串燒、山藥鐵板燒</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=磯丸水產+錦糸町南口店')">
+          <span>🦀</span> 磯丸水產 錦糸町南口店
+          <div class="tag tag-eat" style="margin-top:5px;">必點：蟹膏甲羅燒 (超級下酒)</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もんじゃ+お好み焼+満月+錦糸町')">
+          <span>🥢</span> もんじゃ お好み焼 満月
+          <span class="hours">🕒 營業時間：至深夜</span>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=月島もんじゃ+はる+錦糸町本店')">
+          <span>🥘</span> 月島もんじゃ はる (Haru)
+          <span class="hours">🕒 營業時間：17:00 - 翌05:00</span>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=玉金+錦糸町')">
+          <span>🍳</span> 玉金 (Tamakin) 本店 / 2號店
+          <span class="hours">🕒 營業時間：本店至 0:00 / 分店至翌 1:00</span>
+        </div>
       </div>
     </div>
 
     <div id="day3" class="day-view">
+      <div class="weather-card">
+        <div>📍 池袋<br><span style="font-size:0.75rem; font-weight:normal;">室內購物行程為主，無視天氣爽逛！</span></div>
+        <div class="weather-icon">☁️</div>
+      </div>
+
       <div class="card activity-card">
         <span class="activity-time">10:30</span>
         <div class="activity-title">☀️ 睡飽再出發</div>
@@ -246,8 +352,12 @@
 
       <div class="card activity-card">
         <span class="activity-time">11:30</span>
-        <div class="activity-title">🏢 陽光城 (Sunshine City)</div>
-        <p style="font-size:0.85rem; color:#666;">吉伊卡哇樂園、寶可夢 Mega Tokyo。</p>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=Sunshine+City+池袋" target="_blank" class="map-link">🏢 陽光城 (Sunshine City)</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-buy">🛍️ 必逛推薦：Chiikawa Land、Pokemon Center Mega Tokyo (噴火龍地標)。</div>
+        </div>
       </div>
 
       <div class="transport-card">
@@ -256,16 +366,24 @@
 
       <div class="card activity-card">
         <span class="activity-time">14:30</span>
-        <div class="activity-title">🍜 吉伊卡哇拉麵 豚</div>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=吉伊卡哇拉麵+豚+池袋" target="_blank" class="map-link">🍜 吉伊卡哇拉麵 豚 (池袋店)</a>
+        </div>
         <div class="tags-container">
-          <div class="tag tag-res">需抽籤預約</div>
+          <div class="tag tag-res">🔴 預約提示：必須提前抽籤！</div>
+          <div class="tag tag-eat">🍔 必點菜單：招牌「拉麵 豚」。點不同尺寸(迷你/小/大)會用不同角色的碗盛裝喔！</div>
+          <div class="tag tag-buy">🛍️ 必買周邊：只有內用客人有資格買的「角色拉麵碗」與復古冷飲杯！</div>
         </div>
       </div>
 
       <div class="card activity-card">
         <span class="activity-time">16:00</span>
-        <div class="activity-title">🛍️ Animate 池袋總店</div>
-        <p style="font-size:0.85rem; color:#666;">周邊與扭蛋。</p>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=Animate+池袋總店" target="_blank" class="map-link">🛍️ Animate 池袋總店</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊故事：這裡是世界最大的動漫旗艦店，全棟從漫畫、周邊到扭蛋機應有盡有。</div>
+        </div>
       </div>
 
       <div class="transport-card">
@@ -274,9 +392,12 @@
 
       <div class="card activity-card">
         <span class="activity-time">19:00</span>
-        <div class="activity-title">🥘 月島もんじゃ もへじ (池袋店)</div>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=月島もんじゃ+もへじ+池袋" target="_blank" class="map-link">🥘 月島もんじゃ もへじ (池袋店)</a>
+        </div>
         <div class="tags-container">
-          <div class="tag tag-eat">明太子麻糬文字燒</div>
+          <div class="tag tag-res">🔴 預約提示：建議提前網路預約以免排隊。</div>
+          <div class="tag tag-eat">🍔 必點菜單：明太子麻糬起司文字燒 (會有店員桌邊展現華麗代烤技術)。</div>
         </div>
       </div>
 
@@ -288,6 +409,11 @@
     </div>
 
     <div id="day4" class="day-view">
+      <div class="weather-card">
+        <div>📍 富士山周邊<br><span style="font-size:0.75rem; font-weight:normal;">山區氣候變化大，請務必攜帶防風外套與雨具！</span></div>
+        <div class="weather-icon">🗻</div>
+      </div>
+
       <div class="transport-card">
         🚶‍♂️ <b>錦糸町 ➔ 東京車站 (包車集合點)</b><br>
         <span class="line-badge bg-jr-blue">JR 總武線快速</span> 錦糸町 → 東京 (一線直達)<br>
@@ -297,7 +423,17 @@
       <div class="card activity-card">
         <span class="activity-time">08:00 - 19:00</span>
         <div class="activity-title">🗻 Klook 富士山包車一日遊</div>
-        <p style="font-size:0.85rem; color:#666;">河口湖、忍野八海。回程選擇於「新宿 (東京 MODE 學園)」下車。</p>
+        <div class="activity-desc">詳細行程站點與攻略：</div>
+        <div class="tags-container">
+          <div class="tag tag-guide" style="margin-bottom:4px;">📍 忍野八海：必拍清澈湧泉。</div>
+          <div class="tag tag-eat" style="margin-bottom:8px;">🍔 忍野必吃：現烤草餅、碳烤溪魚。</div>
+          
+          <div class="tag tag-guide" style="margin-bottom:4px;">📍 河口湖 Lawson：IG 超紅富士山同框打卡點。</div>
+          
+          <div class="tag tag-guide" style="margin-bottom:4px;">📍 大石公園：欣賞四季花海與完整富士山。</div>
+          <div class="tag tag-buy">🛍️ 大石必買：富士山造型餅乾與當地果醬。</div>
+        </div>
+        <p style="font-size:0.85rem; color:#666; font-weight:bold; margin-top:8px;">⚠️ 回程請選擇於「新宿 (東京 MODE 學園)」下車。</p>
       </div>
 
       <div class="transport-card">
@@ -306,9 +442,12 @@
 
       <div class="card activity-card">
         <span class="activity-time">19:30</span>
-        <div class="activity-title">🍲 新宿 伊吹 (Ibuki) 壽喜燒</div>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=新宿+伊吹+壽喜燒" target="_blank" class="map-link">🍲 新宿 伊吹 (Ibuki) 壽喜燒</a>
+        </div>
         <div class="tags-container">
-          <div class="tag tag-res">米其林老店</div>
+          <div class="tag tag-res">🔴 預約提示：傳承70年的米其林推薦老店，強烈建議預約！</div>
+          <div class="tag tag-eat">🍔 必點菜單：特選 A5 國產黑毛和牛壽喜燒 (搭配秘製 Warishita 醬汁)。</div>
         </div>
       </div>
 
@@ -320,6 +459,11 @@
     </div>
 
     <div id="day5" class="day-view">
+      <div class="weather-card">
+        <div>📍 讀賣樂園・中野<br><span style="font-size:0.75rem; font-weight:normal;">遊樂園以戶外為主，留意防曬與補充水分。</span></div>
+        <div class="weather-icon">☀️</div>
+      </div>
+
       <div class="card activity-card">
         <span class="activity-time">08:45</span>
         <div class="activity-title">☀️ 出發</div>
@@ -335,8 +479,13 @@
 
       <div class="card activity-card">
         <span class="activity-time">10:00 - 18:00</span>
-        <div class="activity-title">🐶 PokéPark KANTO</div>
-        <p style="font-size:0.85rem; color:#666;">寶可夢樂園，玩到閉園。</p>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=讀賣樂園" target="_blank" class="map-link">🐶 PokéPark KANTO 寶可夢樂園</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：直奔「草紗鎮」，去寶可夢中心看吉利蛋笑臉！必玩皮卡丘電力天堂與伊布旋轉之旅。</div>
+          <div class="tag tag-buy">🛍️ 必買推薦：園區限定「角色變身頭飾」，戴上拍照超有 Fu。</div>
+        </div>
       </div>
 
       <div class="transport-card">
@@ -348,24 +497,31 @@
 
       <div class="card activity-card">
         <span class="activity-time">19:15</span>
-        <div class="activity-title">🏬 中野百老匯</div>
-        <p style="font-size:0.85rem; color:#666;">極速挖寶，店家 20:00 陸續關門。</p>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=中野百老匯" target="_blank" class="map-link">🏬 中野百老匯</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：極速挖寶！注意店家大多會在 20:00 準時關門。</div>
+        </div>
       </div>
 
       <div class="card activity-card" style="border-left-color: #ff9f43;">
         <span class="activity-time" style="color: #ff9f43;">20:00</span>
         <div class="activity-title">🍻 晚餐備案：中野北口串燒</div>
-        <p style="font-size:0.8rem; color:#888; margin-bottom:10px;">看心情三選一！(點擊直接導航)</p>
+        <p style="font-size:0.8rem; color:#888; margin-bottom:10px;">看心情三選一！(點擊可導航)</p>
         
-        <a href="https://www.google.com/search?q=https://www.google.com/maps/search/%3Fapi%3D1%26query%3D%E5%9B%9B%E6%96%87%E5%B1%8B%2B%E4%B8%AD%E9%87%8E%E5%8C%97%E5%8F%A3%E5%BA%97" target="_blank" class="btn-backup">
-          <span>🍻</span> 超道地熱鬧：四文屋
-        </a>
-        <a href="https://www.google.com/search?q=https://www.google.com/maps/search/%3Fapi%3D1%26query%3D%E9%B3%A5%E8%B2%B4%E6%97%8F%2B%E4%B8%AD%E9%87%8E%E5%8C%97%E5%8F%A3%E5%BA%97" target="_blank" class="btn-backup">
-          <span>🍗</span> 平板點餐最無腦：鳥貴族
-        </a>
-        <a href="https://www.google.com/search?q=https://www.google.com/maps/search/%3Fapi%3D1%26query%3D%E5%A1%9A%E7%94%B0%E8%BE%B2%E5%A0%B4%2B%E4%B8%AD%E9%87%8E%E5%8C%97%E5%8F%A3%E5%BA%97" target="_blank" class="btn-backup">
-          <span>🐔</span> 舒服吃頂級地雞：塚田農場
-        </a>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=四文屋+中野北口店')">
+          <span>🍻</span> 四文屋 中野北口店
+          <div class="tag tag-eat" style="margin-top:5px;">必點：平價烤豬雜、超道地氣氛</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=鳥貴族+中野北口店')">
+          <span>🍗</span> 鳥貴族 中野北口店
+          <div class="tag tag-eat" style="margin-top:5px;">必點：雞腿肉串、平板無腦點餐</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=塚田農場+中野北口店')">
+          <span>🐔</span> 塚田農場 中野北口店
+          <div class="tag tag-eat" style="margin-top:5px;">必點：頂級炭火地雞</div>
+        </div>
       </div>
 
       <div class="transport-card">
@@ -374,9 +530,11 @@
 
       <div class="card activity-card">
         <span class="activity-time">21:00</span>
-        <div class="activity-title">🍸 Bar DIO (中野)</div>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=Bar+DIO+中野" target="_blank" class="map-link">🍸 Bar DIO (中野 JOJO 酒吧)</a>
+        </div>
         <div class="tags-container">
-          <div class="tag tag-eat">JOJO 替身調酒</div>
+          <div class="tag tag-eat">🍔 必點菜單：直接請調酒師為你特製一杯你的「專屬替身調酒」！</div>
         </div>
       </div>
 
@@ -388,10 +546,14 @@
     </div>
 
     <div id="day6" class="day-view">
+      <div class="weather-card">
+        <div>📍 新宿・原宿<br><span style="font-size:0.75rem; font-weight:normal;">最後採購日，祈禱是個大晴天！</span></div>
+        <div class="weather-icon">🌤️</div>
+      </div>
+
       <div class="card activity-card">
         <span class="activity-time">09:30</span>
         <div class="activity-title">🧳 退房出發</div>
-        <p style="font-size:0.85rem; color:#666;">帶著所有行李退房。</p>
       </div>
 
       <div class="transport-card">
@@ -402,14 +564,17 @@
       <div class="card activity-card">
         <span class="activity-time">10:15</span>
         <div class="activity-title">🔐 寄放行李</div>
-        <p style="font-size:0.85rem; color:#666;">將行李鎖在新宿車站內的投幣置物櫃。</p>
+        <div class="activity-desc">將行李鎖在新宿車站內的投幣置物櫃。</div>
       </div>
 
       <div class="card activity-card">
         <span class="activity-time">11:30</span>
-        <div class="activity-title">🍋 新宿 牛舌檸檬</div>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=新宿+牛舌的檸檬" target="_blank" class="map-link">🍋 新宿 牛舌的檸檬</a>
+        </div>
         <div class="tags-container">
-          <div class="tag tag-eat">極厚牛舌定食</div>
+          <div class="tag tag-eat">🍔 必點菜單：招牌「極品厚切牛舌牛排定食」，粉嫩肉汁超飽滿！</div>
+          <div class="tag tag-res">🔴 預約提示：超人氣店鋪，建議提前一個月預約。</div>
         </div>
       </div>
 
@@ -421,8 +586,12 @@
 
       <div class="card activity-card">
         <span class="activity-time">13:30</span>
-        <div class="activity-title">🌙 美少女戰士 Shining Theater</div>
-        <p style="font-size:0.85rem; color:#666;">品川王子大飯店 (生日特典場)。</p>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=品川王子大飯店" target="_blank" class="map-link">🌙 美少女戰士 Shining Theater</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊故事：位在品川王子大飯店，今天是 6/22，盡情享受月野兔生日特典場吧！</div>
+        </div>
       </div>
 
       <div class="transport-card">
@@ -433,8 +602,14 @@
 
       <div class="card activity-card">
         <span class="activity-time">15:30</span>
-        <div class="activity-title">🥐 原宿購物</div>
-        <p style="font-size:0.85rem; color:#666;">吉伊卡哇麵包店、Sailor Moon Store 限定品。</p>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=原宿+表參道" target="_blank" class="map-link">🥐 原宿購物：吉伊卡哇麵包店</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-res">🔴 預約提示：必須提前官網抽籤預約！</div>
+          <div class="tag tag-eat">🍔 必買美食：角色造型奶油麵包 (吉伊卡哇卡士達/小八巧克力/兔兔焦糖)。</div>
+          <div class="tag tag-buy">🛍️ 必買周邊：Sailor Moon Store 買原宿限定周邊。</div>
+        </div>
       </div>
 
       <div class="transport-card">
@@ -446,25 +621,29 @@
       <div class="card activity-card">
         <span class="activity-time">17:15</span>
         <div class="activity-title">🍱 準備與領行李</div>
-        <p style="font-size:0.85rem; color:#666;">在新宿車站拿回行李，並買好和牛/海鮮火車便當。</p>
+        <div class="activity-desc">在新宿車站拿回行李，記得先在百貨地下街買好和牛/海鮮火車便當。</div>
       </div>
 
       <div class="transport-card">
         🚶‍♂️ <b>新宿 ➔ 成田機場</b><br>
         <span class="line-badge bg-jr-nex">JR 成田特快 (N'EX)</span> 新宿 → 成田機場 (對號座直達)<br>
-        🕒 車程：約 80 分鐘 (在車上吃豪華便當)
+        🕒 車程：約 80 分鐘 (可以在車上舒舒服服吃便當)
       </div>
 
       <div class="card activity-card">
         <span class="activity-time">19:30</span>
-        <div class="activity-title">✈️ 成田機場最後衝刺</div>
-        <p style="font-size:0.85rem; color:#666;">逛 Pokemon Store。</p>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=成田機場" target="_blank" class="map-link">✈️ 成田機場最後衝刺 (Pokemon Store)</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-buy">🛍️ 必買推薦：Pokemon Store 尋找機場專屬「機長皮卡丘」。</div>
+        </div>
       </div>
       
       <div class="card activity-card">
         <span class="activity-time">22:10</span>
         <div class="activity-title">🇹🇼 滿載而歸</div>
-        <p style="font-size:0.85rem; color:#666;">搭乘 MM627 起飛回台灣！</p>
+        <div class="activity-desc">搭乘樂桃 MM627 起飛回台灣！</div>
       </div>
     </div>
 
@@ -476,7 +655,9 @@
       </div>
       <div class="info-group">
         <div class="info-title">🏨 住宿基地</div>
-        <p><b>Sky 錦糸町 (南口)</b></p>
+        <p>
+          <a href="https://www.google.com/maps/search/?api=1&query=東京都墨田區江東橋2丁目1-4" target="_blank" class="map-link" style="font-size: 1.05rem; font-weight: bold;">Sky 錦糸町 (南口)</a>
+        </p>
         <p>墨田區江東橋2-1-4</p>
       </div>
     </div>

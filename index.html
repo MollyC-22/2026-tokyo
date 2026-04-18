@@ -86,12 +86,13 @@
   }
   .weather-icon { font-size: 1.6rem; }
 
-  /* 行程卡片：紙膠帶 */
+  /* 行程卡片：拍立得/便條紙感 ＋ 紙膠帶 */
   .card { 
     background: white; border-radius: 8px; padding: 20px 16px 16px; margin-bottom: 18px; 
     box-shadow: 2px 3px 8px rgba(0,0,0,0.04); position: relative; 
     border: 1px solid #f0e6e6; border-top: 4px solid var(--primary);
   }
+  /* 手帳紙膠帶元素 */
   .card::before {
     content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-1.5deg);
     width: 75px; height: 18px; background: rgba(255, 182, 193, 0.6);
@@ -99,7 +100,7 @@
     box-shadow: 0 1px 2px rgba(0,0,0,0.05); border-radius: 2px; z-index: 1;
   }
   
-  /* 時間：螢光筆 */
+  /* 時間：螢光筆畫重點效果 */
   .activity-time { 
     font-weight: 900; color: #444; font-size: 0.95rem; margin-bottom: 8px; 
     display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px;
@@ -113,7 +114,7 @@
   .map-link:active { color: var(--primary); opacity: 0.7; }
   .map-link::after { content: ' 📍'; font-size: 0.9rem; }
   
-  /* 交通虛線 */
+  /* 交通虛線：手繪圓點風格 */
   .transport-card { 
     background: transparent; border: none; padding: 0 15px 22px 25px; 
     margin: -10px 0 10px 15px; position: relative; font-size: 0.85rem; line-height: 1.7; color: #666; 
@@ -124,6 +125,7 @@
   }
   .transport-card b { color: #4A3A40; }
   
+  /* 地鐵線路小貼紙 */
   .line-badge { display: inline-block; padding: 3px 8px; border-radius: 6px; color: white; font-weight: bold; font-size: 0.7rem; margin-right: 4px; box-shadow: 1px 2px 3px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05); }
   .bg-jr-blue { background: var(--jr-blue); }
   .bg-jr-yellow { background: var(--jr-yellow); color: #333; }
@@ -136,6 +138,7 @@
   .bg-keio { background: #E6005C; }
   .bg-bus { background: #16a085; }
   
+  /* 手帳貼紙風 Tag */
   .tags-container { display: flex; flex-direction: column; gap: 8px; margin-bottom: 6px; margin-top: 10px; }
   .tag { font-size: 0.8rem; padding: 8px 12px; border-radius: 8px; font-weight: 700; display: inline-flex; align-items: flex-start; line-height: 1.5; box-shadow: 1px 1px 4px rgba(0,0,0,0.03); }
   .tag-eat { background: #FFF3E0; color: #E65100; border-left: 4px solid #FF9800; }
@@ -143,7 +146,9 @@
   .tag-guide { background: #F3E5F5; color: #4A148C; border-left: 4px solid #9C27B0; }
   .tag-res { background: #FFEBEE; color: #C62828; border-left: 4px solid #F44336; font-weight: 900; }
   
+  /* 備案按鈕：手繪框線感 */
   .btn-backup { display: block; text-align: left; background: #FFF; color: #555; text-decoration: none; padding: 12px; border-radius: 12px; font-size: 0.9rem; font-weight: bold; border: 1.5px dashed #dcb6c5; margin-bottom: 10px; transition: 0.2s; position: relative; box-shadow: 1px 2px 0px rgba(220, 182, 197, 0.3);}
+  .btn-backup:active { background: #FFF0F5; transform: translateY(2px); box-shadow: 0px 0px 0px rgba(220, 182, 197, 0); }
   .btn-backup span.icon { font-size: 1.2rem; margin-right: 6px; }
   .btn-backup .hours { display: block; font-size: 0.75rem; color: #999; margin-top: 6px; font-weight: normal; border-top: 1px dashed #eee; padding-top: 4px;}
   
@@ -178,82 +183,666 @@
   <main id="main-content">
     <div id="day1" class="day-view active">
       <div class="weather-card"><div>📍 銀座・澀谷<br><span style="font-size:0.75rem;">6月均溫 22~26°C (梅雨季需摺疊傘)</span></div><div>🌧️</div></div>
-      <div class="card activity-card"><span class="activity-time">06:30 - 07:30 <span class="time-duration">1 小時</span></span><div class="activity-title">🛬 抵達成田機場</div></div>
-      <div class="transport-card">🚶‍♂️ <b>成田機場 ➔ 錦糸町 (民宿)</b><br><span class="line-badge bg-jr-blue">JR 總武線快速</span> 往東京/橫須賀方向<br>🕒 乘車直達 85 分 + 徒步至民宿 5 分</div>
-      <div class="card activity-card"><span class="activity-time">09:00 - 09:15 <span class="time-duration">15 分鐘</span></span><div class="activity-title"><a href="https://www.google.com/maps/place/sky+kinshicho+-+One-Bedroom+Apartment/@35.6932106,139.8128968,17z/data=!3m1!4b1!4m10!3m9!1s0x601889277616fe6f:0x2be2afa4d073b35b!5m2!4m1!1i2!8m2!3d35.6932106!4d139.8128968!16s%2Fg%2F11z5qw_8fv!17BQ0FF?entry=ttu&g_ep=EgoyMDI2MDQxNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-link">🏨 Sky 錦糸町 (寄放行李)</a></div><div class="tags-container"><div class="tag tag-guide">📖 導遊提醒：先寄放行李一身輕，確認隨身物品即可出發。</div></div></div>
-      <div class="transport-card">🚶‍♂️ <b>錦糸町 ➔ 銀座</b><br>徒步至錦糸町站 (5分) + <span class="line-badge bg-metro-hanzomon">半藏門線</span> 錦糸町 → 三越前 (13分) + 站內轉乘 (5分) + <span class="line-badge bg-metro-ginza">銀座線</span> 三越前 → 銀座 (2分) + 徒步至餐廳 (5分)</div>
-      <div class="card activity-card" style="border-top-color: #ff9f43;"><span class="activity-time">09:30 - 10:45 <span class="time-duration">1.25 小時</span></span><div class="activity-title">☕ 悠哉早餐備案</div>
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=銀座木村家')"><span class="icon">🥐</span> 木村家銀座總店<div class="tag tag-eat" style="margin-top:8px;">🍔 必點：招牌「酒種紅豆麵包」，保留百年明治天皇也愛的傳統發酵工法。</div></div>
-        <div class="btn-backup" onclick="window.open('https://maps.app.goo.gl/Tricolore')"><span class="icon">☕</span> 銀座トリコロール (Tricolore) 本店<div class="tag tag-eat" style="margin-top:8px;">特色：昭和11年創業老字號，必點現做閃電泡芙與手沖咖啡。</div></div>
+      <div class="card activity-card">
+        <span class="activity-time">06:30 - 07:30 <span class="time-duration">1 小時</span></span>
+        <div class="activity-title">🛬 抵達成田機場</div>
       </div>
-      <div class="card activity-card"><span class="activity-time">11:00 - 12:00 <span class="time-duration">1 小時</span></span><div class="activity-title"><a href="https://www.google.com/maps/search/?api=1&query=燒肉INOUE+銀座店" target="_blank" class="map-link">🥩 燒肉 INOUE 銀座店</a></div><div class="tags-container"><div class="tag tag-res">🔴 預約提示：預約制，請務必準時抵達。</div><div class="tag tag-eat">🍔 必吃推薦：高CP值午間限定「和牛蓋飯三吃」、瞬間燻製生拌牛肉。</div></div></div>
-      <div class="transport-card">🚶‍♂️ <b>銀座 ➔ 澀谷 PARCO</b><br>徒步至銀座站 (5分) + <span class="line-badge bg-metro-ginza">銀座線</span> 直達澀谷站 (16分) + 徒步至 PARCO (7分)</div>
-      <div class="card activity-card"><span class="activity-time">12:30 - 15:30 <span class="time-duration">3 小時</span></span><div class="activity-title"><a href="https://www.google.com/maps/search/?api=1&query=澀谷PARCO" target="_blank" class="map-link">🎮 澀谷 PARCO 6F (JOJO WORLD 重點)</a></div><div class="tags-container"><div class="tag tag-guide">📖 導遊攻略：重點行程為 JOJO WORLD！請盡情體驗替身小遊戲。</div><div class="tag tag-buy">🛍️ 必逛必買：Nintendo TOKYO (建議先抽整理券)、Pokemon Center 澀谷限定「塗鴉皮卡丘」。</div></div></div>
-      <div class="transport-card">🚶‍♂️ <b>澀谷 ➔ 麻布台之丘</b><br>徒步至澀谷站 (7分) + <span class="line-badge bg-metro-ginza">銀座線</span> 澀谷 → 虎之門 (5分) + 站外徒步轉乘 (8分) + <span class="line-badge bg-metro-hibiya">日比谷線</span> 虎之門 → 神谷町 (2分) + 徒步至展覽 (3分)</div>
-      <div class="card activity-card"><span class="activity-time">16:00 - 17:30 <span class="time-duration">1.5 小時</span></span><div class="activity-title"><a href="https://www.google.com/maps/search/?api=1&query=麻布台之丘" target="_blank" class="map-link">🖼️ 麻布台之丘 (JOJO原畫展)</a></div><div class="tags-container"><div class="tag tag-guide">📖 導遊介紹：這裡是日本最新第一高樓，重點任務是參觀集英社 Manga-Art Heritage 原畫展。</div></div></div>
-      <div class="transport-card">🚶‍♂️ <b>麻布台之丘 ➔ 錦糸町 (回大本營)</b><br>徒步至神谷町站 (3分) + <span class="line-badge bg-metro-hibiya">日比谷線</span> 至秋葉原 (13分) + 站內轉乘 (5分) + <span class="line-badge bg-jr-yellow">JR 中央總武線</span> 至錦糸町 (7分)</div>
-      <div class="card activity-card" style="border-top-color: #ff9f43;"><span class="activity-time">18:15 - 20:00</span><div class="activity-title">🍽️ 晚餐備案：錦糸町大本營</div>
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もり一+錦糸町店')"><span class="icon">🍣</span> もり一 錦糸町店<div class="tag tag-eat" style="margin-top:8px;">特色：超人氣迴轉壽司，必點炙燒鮭魚與紅醋飯壽司。</div><span class="hours">🕒 營業：11:00 - 22:00</span></div>
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=真鯛らーめん+麺魚+錦糸町本店')"><span class="icon">🍜</span> 真鯛らーめん 麺魚<div class="tag tag-eat" style="margin-top:8px;">特色：超濃厚真鯛魚湯拉麵，配上煙燻低溫叉燒。</div><span class="hours">🕒 營業：11:00 - 20:30 (打烊較早留意時間)</span></div>
-        <div class="btn-backup" onclick="window.open('https://maps.app.goo.gl/Yoneda')"><span class="icon">🐔</span> 焼とり よね田 (Yoneda) 中野店<div class="tag tag-eat" style="margin-top:8px;">特色：超人氣燒鳥居酒屋，必點超巨大「手作雞肉丸」。</div><span class="hours">🕒 營業：17:00 - 翌 00:00</span></div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>成田機場 ➔ 錦糸町 (民宿)</b><br>
+        <span class="transit-route"><span class="line-badge bg-jr-blue">JR 總武線快速</span> 往東京/橫須賀方向</span>
+        <span class="transit-time">🕒 總計 90 分鐘 (乘車 85分 + 步行 5分)</span>
       </div>
-      <div class="card" style="border-top: 4px solid #7ed6df; background: #f0f9ff;"><span class="activity-time">21:00 - 23:00</span><div class="activity-title">🛍️ 導遊私心建議：深夜採購戰</div><div class="tags-container"><div class="tag tag-guide">📖 今日較早回飯店，洗完澡後可步行至「唐吉訶德 錦糸町店」(北口)！</div><div class="tag tag-buy">🛍️ 重點：藥妝、零食、伴手禮一站購足，開到凌晨 4:00。</div></div></div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">09:00 - 09:15 <span class="time-duration">15 分鐘</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/place/sky+kinshicho+-+One-Bedroom+Apartment/@35.6932106,139.8128968,17z/data=!3m1!4b1!4m10!3m9!1s0x601889277616fe6f:0x2be2afa4d073b35b!5m2!4m1!1i2!8m2!3d35.6932106!4d139.8128968!16s%2Fg%2F11z5qw_8fv!17BQ0FF?entry=ttu&g_ep=EgoyMDI2MDQxNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-link">🏨 Sky 錦糸町 (寄放行李)</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊提醒：先寄放行李一身輕，確認隨身物品即可出發。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>錦糸町 ➔ 銀座</b><br>
+        <span class="transit-route"><span class="line-badge bg-metro-hanzomon">半藏門線</span> 錦糸町 → 三越前</span>
+        <span class="transit-route">🔄 轉乘：<span class="line-badge bg-metro-ginza">銀座線</span> 三越前 → 銀座</span>
+        <span class="transit-time">🕒 總計 30 分鐘 (乘車 15分 + 步行轉乘 15分)</span>
+      </div>
+      
+      <div class="card activity-card" style="border-top-color: #ff9f43;">
+        <span class="activity-time" style="color: #ff9f43;">09:30 - 10:45 <span class="time-duration">1.25 小時</span></span>
+        <div class="activity-title">☕ 悠哉早餐備案</div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=銀座木村家')">
+          <span class="icon">🥐</span> 木村家銀座總店
+          <div class="tag tag-eat" style="margin-top:8px;">🍔 必點：招牌「酒種紅豆麵包」，保留百年明治天皇也愛的傳統發酵工法。</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://maps.app.goo.gl/Tricolore')">
+          <span class="icon">☕</span> 銀座トリコロール (Tricolore) 本店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：昭和11年創業老字號，必點現做閃電泡芙與手沖咖啡。</div>
+        </div>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">11:00 - 12:00 <span class="time-duration">1 小時</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=燒肉INOUE+銀座店" target="_blank" class="map-link">🥩 燒肉 INOUE 銀座店</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-res">🔴 預約提示：預約制，請務必準時抵達。</div>
+          <div class="tag tag-eat">🍔 必吃推薦：高CP值午間限定「和牛蓋飯三吃」、瞬間燻製生拌牛肉。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>銀座 ➔ 澀谷 PARCO</b><br>
+        <span class="transit-route"><span class="line-badge bg-metro-ginza">銀座線</span> 銀座 → 澀谷</span>
+        <span class="transit-time">🕒 總計 22 分鐘 (乘車 16分 + 步行 6分)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">14:00 - 17:00 <span class="time-duration">3 小時</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=澀谷PARCO" target="_blank" class="map-link">🎮 澀谷 PARCO 6F (JOJO WORLD 重點)</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：重點行程為 JOJO WORLD！請盡情體驗替身小遊戲。</div>
+          <div class="tag tag-buy">🛍️ 必逛必買：Nintendo TOKYO (建議先抽整理券)、Pokemon Center 澀谷限定「塗鴉皮卡丘」。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>澀谷 ➔ 麻布台之丘</b><br>
+        <span class="transit-route"><span class="line-badge bg-metro-ginza">銀座線</span> 澀谷 → 虎之門</span>
+        <span class="transit-route">🔄 轉乘：<span class="line-badge bg-metro-hibiya">日比谷線</span> 虎之門 → 神谷町</span>
+        <span class="transit-time">🕒 總計 28 分鐘 (乘車 20分 + 步行 8分)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">17:30 - 19:00 <span class="time-duration">1.5 小時</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=麻布台之丘" target="_blank" class="map-link">🖼️ 麻布台之丘 (JOJO原畫展)</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊介紹：這裡是日本最新第一高樓，重點任務是參觀集英社 Manga-Art Heritage 原畫展。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>麻布台之丘 ➔ 錦糸町 (回大本營)</b><br>
+        <span class="transit-route"><span class="line-badge bg-metro-hibiya">日比谷線</span> 神谷町 → 秋葉原</span>
+        <span class="transit-route">🔄 轉乘：<span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 秋葉原 → 錦糸町</span>
+        <span class="transit-time">🕒 總計 35 分鐘 (乘車 30分 + 步行 5分)</span>
+      </div>
+      
+      <div class="card activity-card" style="border-top-color: #ff9f43;">
+        <span class="activity-time" style="color: #ff9f43;">19:30 - 21:00</span>
+        <div class="activity-title">🍽️ 晚餐備案：錦糸町大本營</div>
+        
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もり一+錦糸町店')">
+          <span class="icon">🍣</span> もり一 錦糸町店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：超人氣迴轉壽司，必點炙燒鮭魚與紅醋飯壽司。</div>
+          <span class="hours">🕒 營業：11:00 - 22:00</span>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=真鯛らーめん+麺魚+錦糸町本店')">
+          <span class="icon">🍜</span> 真鯛らーめん 麺魚
+          <div class="tag tag-eat" style="margin-top:8px;">特色：超濃厚真鯛魚湯拉麵，配上煙燻低溫叉燒。</div>
+          <span class="hours">🕒 營業：11:00 - 20:30 (打烊較早留意時間)</span>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://maps.app.goo.gl/NERFRpRRFCEzdN3t6')">
+          <span class="icon">🥘</span> 月島もんじゃ はる
+          <div class="tag tag-eat" style="margin-top:8px;">特色：深夜不怕沒得吃，必點明太子起司文字燒、鐵板牛筋。</div>
+          <span class="hours">🕒 營業：17:00 - 翌05:00</span>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=玉金+錦糸町')">
+          <span class="icon">🍳</span> 玉金 (Tamakin) 本店 / 2號店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：平價鐵板燒與串燒居酒屋。</div>
+          <span class="hours">🕒 營業：本店至 0:00 / 分店至翌 1:00</span>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もんじゃ+お好み焼+満月+錦糸町')">
+          <span class="icon">🥢</span> もんじゃ お好み焼 満月
+          <div class="tag tag-eat" style="margin-top:8px;">特色：在地溫馨風大阪燒與文字燒。</div>
+          <span class="hours">🕒 營業：晚餐時段至深夜</span>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        🚶‍♂️ <b>錦糸町大本營 ➔ 唐吉訶德 錦糸町店</b><br>
+        <span class="transit-time">🕒 總計 10 分鐘 (步行至北口)</span>
+      </div>
+
+      <div class="card activity-card" style="border-top-color: #7ed6df;">
+        <span class="activity-time" style="color: #7ed6df;">21:30 - 23:00 <span class="time-duration">1.5 小時</span></span>
+        <div class="activity-title">🛍️ 導遊私心建議：深夜採購戰</div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：今日行程最早結束！建議吃飽回飯店洗個澡，再換輕便服裝前往北口的「唐吉訶德 錦糸町店」。</div>
+          <div class="tag tag-buy">🛍️ 採買重點：藥妝、零食、伴手禮一站購足，營業至凌晨 4:00，買完直接扛回飯店超方便！</div>
+        </div>
+      </div>
     </div>
 
     <div id="day2" class="day-view">
-      <div class="weather-card"><div>📍 舞濱 (迪士尼)</div><div>🌤️</div></div>
-      <div class="card activity-card"><span class="activity-time">07:30 - 08:00</span><div class="activity-title">🍙 早餐：Lawson</div></div>
-      <div class="transport-card">徒步至北口巴士站 (8分) + <span class="line-badge bg-bus">迪士尼直達巴士</span> (45分)</div>
-      <div class="card activity-card"><span class="activity-time">09:00 - 21:00</span><div class="activity-title"><a href="https://www.google.com/maps/search/?api=1&query=東京迪士尼樂園" target="_blank" class="map-link">🏰 東京迪士尼樂園</a></div></div>
-      <div class="transport-card">回程：搭巴士或 JR 京葉線至東京轉總武快速</div>
+      <div class="weather-card"><div>📍 舞濱 (迪士尼)<br><span style="font-size:0.75rem;">海邊風大早晚微涼，記得攜帶防曬與薄外套。</span></div><div>🌤️</div></div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">07:30 - 08:00 <span class="time-duration">30 分鐘</span></span>
+        <div class="activity-title">🍙 早餐：民宿樓下 Lawson</div>
+        <div class="tags-container">
+          <div class="tag tag-eat">🍔 必買：熱騰騰的炸雞君 (からあげクン) 或明太子飯糰。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>錦糸町 ➔ 迪士尼</b><br>
+        <span class="transit-route"><span class="line-badge bg-bus">迪士尼直達巴士</span> (北口上車)</span>
+        <span class="transit-time">🕒 總計 45 分鐘 (上車補眠)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">09:00 - 21:00 <span class="time-duration">12 小時</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=東京迪士尼樂園" target="_blank" class="map-link">🏰 東京迪士尼樂園</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：入園第一時間打開 App 購買 DPA 或抽 Standby Pass！</div>
+          <div class="tag tag-eat">🍔 必點美食：三眼怪麻糬、煙燻火雞腿、米奇造型吉拿棒。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>迪士尼 ➔ 錦糸町 (回程)</b><br>
+        <span class="transit-route">方式A：搭乘直達巴士。</span>
+        <span class="transit-route">方式B：<span class="line-badge bg-jr-nex" style="background:#c0392b;">JR 京葉線</span> 至東京站轉 <span class="line-badge bg-jr-blue">JR 總武線快速</span>。</span>
+        <span class="transit-time">🕒 總計約 50 分鐘</span>
+      </div>
+      
+      <div class="card activity-card" style="border-top-color: #ff9f43;">
+        <span class="activity-time" style="color: #ff9f43;">22:00 - 23:30</span>
+        <div class="activity-title">🍻 宵夜備案：錦糸町南口</div>
+        
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=鳥貴族+錦糸町南口店')">
+          <span class="icon">🍗</span> 鳥貴族 錦糸町南口店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：全品項均一價，必點烤雞腿肉串、山藥鐵板燒。</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=磯丸水產+錦糸町南口店')">
+          <span class="icon">🦀</span> 磯丸水產 錦糸町南口店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：24H海鮮居酒屋，必點「蟹膏甲羅燒」配啤酒。</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もんじゃ+お好み焼+満月+錦糸町')">
+          <span class="icon">🥢</span> もんじゃ お好み焼 満月
+          <div class="tag tag-eat" style="margin-top:8px;">特色：撫慰人心的文字燒小店。</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=月島もんじゃ+はる+錦糸町本店')">
+          <span class="icon">🥘</span> 月島もんじゃ はる
+          <div class="tag tag-eat" style="margin-top:8px;">特色：營業至翌05:00的明太子文字燒。</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=玉金+錦糸町')">
+          <span class="icon">🍳</span> 玉金 (Tamakin) 本店 / 2號店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：平價鐵板燒料理。</div>
+        </div>
+      </div>
     </div>
 
     <div id="day3" class="day-view">
-      <div class="weather-card"><div>📍 池袋</div><div>☁️</div></div>
-      <div class="card activity-card"><span class="activity-time">08:45 - 09:00</span><div class="activity-title">☀️ 準備出發搶頭香！</div></div>
-      <div class="transport-card">乘車至池袋 (35分) + 徒步至陽光城 (8分)</div>
-      <div class="card activity-card"><span class="activity-time">10:00 - 12:00</span><div class="activity-title"><a href="https://maps.app.goo.gl/uypPJmYNbKVFK1Y86" target="_blank" class="map-link">🎀 吉伊卡哇樂園 (Chiikawa Land)</a></div><div class="tag tag-res">🔴 10:00 最早場入園</div></div>
-      <div class="card activity-card"><span class="activity-time">12:00 - 14:15</span><div class="activity-title"><a href="https://maps.app.goo.gl/cLLd583RPCJj1dUG9" target="_blank" class="map-link">🏢 陽光城 & 寶可夢中心 (2F)</a></div></div>
-      <div class="transport-card">徒步 (8分) 至拉麵店</div>
-      <div class="card activity-card"><span class="activity-time">14:30 - 15:30</span><div class="activity-title"><a href="https://www.google.com/maps/search/?api=1&query=吉伊卡哇拉麵+豚+池袋" target="_blank" class="map-link">🍜 吉伊卡哇拉麵 豚</a></div></div>
-      <div class="transport-card">徒步 (5分) 至 Animate</div>
-      <div class="card activity-card"><span class="activity-time">16:00 - 18:30</span><div class="activity-title"><a href="https://www.google.com/maps/search/?api=1&query=Animate+池袋總店" target="_blank" class="map-link">🛍️ Animate 池袋總店</a></div></div>
+      <div class="weather-card"><div>📍 池袋<br><span style="font-size:0.75rem;">室內購物行程為主，無視天氣爽逛！</span></div><div>☁️</div></div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">08:45 - 09:00</span>
+        <div class="activity-title">☀️ 準備出發搶頭香！</div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>錦糸町 ➔ 池袋</b><br>
+        <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 總武線</span> 錦糸町 → 秋葉原</span>
+        <span class="transit-route">🔄 轉乘：<span class="line-badge bg-jr-green">JR 山手線</span> 秋葉原 → 池袋</span>
+        <span class="transit-time">🕒 總計 43 分鐘 (乘車 35分 + 步行 8分)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">10:00 - 12:00 <span class="time-duration">2 小時</span></span>
+        <div class="activity-title">
+          <a href="https://maps.app.goo.gl/uypPJmYNbKVFK1Y86" target="_blank" class="map-link">🎀 吉伊卡哇樂園 (Chiikawa Land)</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-res">🔴 導遊重點：今日主戰場！目標是最早的 10:00 入場。</div>
+          <div class="tag tag-buy">🛍️ 必買推薦：各類絨毛娃娃、當店限定文具扭蛋。</div>
+        </div>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">12:00 - 14:15 <span class="time-duration">2.25 小時</span></span>
+        <div class="activity-title">
+          <a href="https://maps.app.goo.gl/cLLd583RPCJj1dUG9" target="_blank" class="map-link">🏢 陽光城 & 寶可夢中心 (太陽城2F)</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：逛完吉伊卡哇順著去 Pokemon Center Mega Tokyo，尋找噴火龍地標打卡。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>陽光城 ➔ 吉伊卡哇拉麵</b><br>
+        <span class="transit-time">🕒 總計 8 分鐘 (池袋商圈內步行)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">14:30 - 15:30 <span class="time-duration">1 小時</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=吉伊卡哇拉麵+豚+池袋" target="_blank" class="map-link">🍜 吉伊卡哇拉麵 豚</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-res">🔴 必須提前抽籤！極度困難的預約。</div>
+          <div class="tag tag-eat">🍔 必點：招牌「拉麵 豚」。點不同尺寸(迷你/小/大)會用不同角色的專屬碗盛裝。</div>
+          <div class="tag tag-buy">🛍️ 必買：只有內用客才有資格購買的「角色拉麵碗」與復古冷飲杯。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>吉伊卡哇拉麵 ➔ Animate 池袋總店</b><br>
+        <span class="transit-time">🕒 總計 5 分鐘 (池袋商圈內步行)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">16:00 - 18:30 <span class="time-duration">2.5 小時</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=Animate+池袋總店" target="_blank" class="map-link">🛍️ Animate 池袋總店</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊故事：這裡是世界最大的動漫旗艦店，全棟從漫畫、周邊到扭蛋機應有盡有。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>Animate ➔ 晚餐餐廳</b><br>
+        <span class="transit-time">🕒 總計 5 分鐘 (池袋商圈內步行)</span>
+      </div>
+      
+      <div class="card activity-card" style="border-top-color: #ff9f43;">
+        <span class="activity-time" style="color: #ff9f43;">19:00 - 21:00</span>
+        <div class="activity-title">🥘 晚餐雙備案</div>
+        
+        <div class="btn-backup" onclick="window.open('https://share.google/ZP7JbgdGKOgQyJNg6')">
+          <span class="icon">🥘</span> 東京もんじゃ くらや (Kuraya) 池袋店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：超夯文字燒，推薦明太子麻糬文字燒。</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://share.google/GIFnYrAbWzBfe8qIC')">
+          <span class="icon">☕</span> 吉伊卡哇咖啡廳 (池袋PARCO本館7F)
+          <div class="tag tag-res" style="margin-top:8px;">🔴 預約提示：需提前抽籤預約，體驗滿滿二次元可愛氛圍。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>池袋 ➔ 錦糸町 (回程)</b><br>
+        <span class="transit-route"><span class="line-badge bg-jr-green">JR 山手線</span> 池袋 → 秋葉原</span>
+        <span class="transit-route">🔄 轉乘：<span class="line-badge bg-jr-yellow">JR 總武線</span> 秋葉原 → 錦糸町</span>
+        <span class="transit-time">🕒 總計 40 分鐘 (乘車 35分 + 步行 5分)</span>
+      </div>
     </div>
 
     <div id="day4" class="day-view">
-      <div class="weather-card"><div>📍 富士山</div><div>🗻</div></div>
-      <div class="card activity-card"><span class="activity-time">08:00</span><div class="activity-title"><a href="https://maps.app.goo.gl/keXZBB1m2MRX3aAd8" target="_blank" class="map-link">🚌 集合上車 (丸之內南口)</a></div></div>
-      <div class="card activity-card"><span class="activity-time">10:30 - 11:30</span><div class="activity-title">⛩️ 新倉山淺間公園展望台</div></div>
-      <div class="card activity-card"><span class="activity-time">19:30 - 21:30</span><div class="activity-title"><a href="https://www.google.com/maps/search/?api=1&query=新宿+伊吹+壽喜燒" target="_blank" class="map-link">🍲 新宿 伊吹壽喜燒</a></div></div>
+      <div class="weather-card"><div>📍 富士山<br><span style="font-size:0.75rem;">山區氣候變化大，請攜帶防風外套與雨具！</span></div><div>🗻</div></div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>錦糸町 ➔ 東京站 (集合點)</b><br>
+        <span class="transit-route"><span class="line-badge bg-jr-blue">JR 總武線快速</span> 錦糸町 → 東京 (直達)</span>
+        <span class="transit-time">🕒 總計 18 分鐘 (乘車 8分 + 步行找集合點 10分)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">08:00</span>
+        <div class="activity-title">
+          <a href="https://maps.app.goo.gl/keXZBB1m2MRX3aAd8" target="_blank" class="map-link">🚌 集合上車 (丸之內南口警察署前)</a>
+        </div>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">10:30 - 11:30 <span class="time-duration">1 小時</span></span>
+        <div class="activity-title">⛩️ 新倉山淺間公園展望台</div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：爬上階梯，拍下經典的五重塔與富士山同框絕景！</div>
+        </div>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">11:45 - 12:05 <span class="time-duration">20 分鐘</span></span>
+        <div class="activity-title">🕰️ 日川時計店 (Hikawa Clock Shop)</div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：IG熱門打卡點，筆直的復古街道直通富士山。</div>
+        </div>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">12:05 - 12:35 <span class="time-duration">30 分鐘</span></span>
+        <div class="activity-title">🍱 午餐時間 (自理)</div>
+        <div class="tags-container">
+          <div class="tag tag-eat">🍔 提示：時間較短，建議吃輕食或預先買好的飯糰。</div>
+        </div>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">12:35 - 13:35 <span class="time-duration">1 小時</span></span>
+        <div class="activity-title">💧 忍野八海</div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 必拍：深不見底的清澈湧泉。</div>
+          <div class="tag tag-eat">🍔 必點美食：周邊小攤販的「現烤草餅」與「碳烤溪魚」。</div>
+        </div>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">14:30 - 14:50 <span class="time-duration">20 分鐘</span></span>
+        <div class="activity-title">🏪 Lawson (Fujikawaguchiko)</div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 打卡攻略：把握時間拍下超商與富士山同框，注意過馬路安全。</div>
+        </div>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">15:20 - 16:10 <span class="time-duration">50 分鐘</span></span>
+        <div class="activity-title">🌸 大石公園</div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：欣賞花海與無遮蔽的壯闊富士山。</div>
+          <div class="tag tag-buy">🛍️ 必買伴手禮：富士山造型餅乾與當地特產果醬。</div>
+        </div>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">17:30 - 19:00</span>
+        <div class="activity-title">🚌 抵達新宿 (包車下車)</div>
+        <div class="tags-container">
+          <div class="tag tag-guide">🔴 導遊提示：回程務必選擇於「新宿MODE學院前-新宿西口」下車！</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>下車點 ➔ 伊吹壽喜燒</b><br>
+        <span class="transit-time">🕒 總計 8 分鐘 (步行)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">19:30 - 21:30</span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=新宿+伊吹+壽喜燒" target="_blank" class="map-link">🍲 新宿 伊吹 (Ibuki) 壽喜燒</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-res">🔴 傳承70年的米其林老店，強烈建議預約！</div>
+          <div class="tag tag-eat">🍔 必點菜單：特選 A5 國產黑毛和牛壽喜燒 (搭配秘製 Warishita 醬汁)。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>新宿 ➔ 錦糸町 (回程)</b><br>
+        <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 新宿 → 錦糸町 (直達)</span>
+        <span class="transit-time">🕒 總計 30 分鐘 (乘車 25分 + 步行 5分)</span>
+      </div>
     </div>
 
     <div id="day5" class="day-view">
-      <div class="weather-card"><div>📍 讀賣樂園・中野</div><div>☀️</div></div>
-      <div class="card activity-card"><span class="activity-time">10:00 - 18:00</span><div class="activity-title"><a href="https://www.google.com/maps/search/?api=1&query=讀賣樂園" target="_blank" class="map-link">🐶 PokéPark KANTO</a></div></div>
-      <div class="card activity-card"><span class="activity-time">21:00 - 23:00</span><div class="activity-title"><a href="https://www.google.com/maps/search/?api=1&query=Bar+DIO+中野" target="_blank" class="map-link">🍸 Bar DIO (JOJO酒吧)</a></div><div class="tag">🔴 營業至 23:00</div></div>
+      <div class="weather-card"><div>📍 讀賣樂園・中野<br><span style="font-size:0.75rem;">遊樂園以戶外為主，留意防曬與補充水分。</span></div><div>☀️</div></div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>錦糸町 ➔ 讀賣樂園</b><br>
+        <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 錦糸町 → 新宿</span>
+        <span class="transit-route">🔄 轉乘：<span class="line-badge bg-keio">京王線</span> 新宿 → 京王讀賣樂園站</span>
+        <span class="transit-route">🚠 轉乘：空中纜車 (Sky Shuttle) 直達</span>
+        <span class="transit-time">🕒 總車程約 60-70 分鐘</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">10:00 - 18:00 <span class="time-duration">8 小時</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=讀賣樂園" target="_blank" class="map-link">🐶 PokéPark KANTO 寶可夢樂園</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：直奔「草紗鎮」，去寶可夢中心看吉利蛋笑臉！必玩皮卡丘電力天堂與伊布旋轉之旅。</div>
+          <div class="tag tag-buy">🛍️ 必買推薦：園區限定「角色變身頭飾」，戴上拍照超有 Fu。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>讀賣樂園 ➔ 中野</b><br>
+        <span class="transit-route"><span class="line-badge bg-keio">京王線</span> 回新宿站</span>
+        <span class="transit-route">🔄 轉乘：<span class="line-badge bg-jr-orange">JR 中央線</span> 新宿 → 中野</span>
+        <span class="transit-time">🕒 總計 50 分鐘 (乘車 45分 + 步行 5分)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">19:15 - 20:00 <span class="time-duration">45 分</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=中野百老匯" target="_blank" class="map-link">🏬 中野百老匯</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：極速挖寶！多數模型店家 20:00 準時關門。</div>
+        </div>
+      </div>
+      
+      <div class="card activity-card" style="border-top-color: #ff9f43;">
+        <span class="activity-time" style="color: #ff9f43;">20:00 - 21:00</span>
+        <div class="activity-title">🍻 晚餐備案：中野北口串燒</div>
+        
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=四文屋+中野北口店')">
+          <span class="icon">🍻</span> 四文屋 中野北口店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：超道地熱鬧氣氛，必點平價烤豬雜。</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=鳥貴族+中野北口店')">
+          <span class="icon">🍗</span> 鳥貴族 中野北口店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：平板無腦點餐，必點雞腿肉串、高麗菜。</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Yakitori+Yoneda+Nakano')">
+          <span class="icon">🐔</span> 焼とり よね田 (Yoneda) 中野店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：超人氣燒鳥居酒屋，必點超巨大「手作雞肉丸」。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>串燒店 ➔ Bar DIO</b><br>
+        <span class="transit-time">🕒 總計 3 分鐘 (中野商圈內步行)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">21:00 - 23:00 <span class="time-duration">2 小時</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=Bar+DIO+中野" target="_blank" class="map-link">🍸 Bar DIO (中野 JOJO 酒吧)</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-eat">🍔 必點：請調酒師為你特製一杯「專屬替身調酒」！</div>
+          <div class="tag tag-guide">🔴 備註：營業時間至 23:00。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>中野 ➔ 錦糸町 (回程)</b><br>
+        <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 中野 → 錦糸町 (直達)</span>
+        <span class="transit-time">🕒 總計 35 分鐘 (乘車 30分 + 步行 5分)</span>
+      </div>
     </div>
 
     <div id="day6" class="day-view">
-      <div class="weather-card"><div>📍 新宿・原宿</div><div>🌤️</div></div>
-      <div class="transport-card">徒步至新宿站 (5分) + 寄存行李 (10分) + 徒步至餐廳 (8分)</div>
-      <div class="card activity-card"><span class="activity-time">11:30 - 12:30 <span class="time-duration">1 小時</span></span><div class="activity-title"><a href="https://www.google.com/maps/search/?api=1&query=新宿+牛舌的檸檬" target="_blank" class="map-link">🍋 新宿 牛舌的檸檬</a></div></div>
-      <div class="transport-card">徒步回新宿站 (8分) + <span class="line-badge bg-jr-green">JR 山手線</span> 至品川 (20分) + 徒步至飯店會場 (5分)</div>
-      <div class="card activity-card"><span class="activity-time">12:50 - 15:00</span><div class="activity-title"><a href="https://www.google.com/maps/search/?api=1&query=品川王子大飯店" target="_blank" class="map-link">🌙 美少女戰士 Shining Theater</a></div><div class="tags-container"><div class="tag tag-guide">📸 提早 40 分鐘抵達，拍照打卡不可錯過！</div></div></div>
-      <div class="transport-card">移動至原宿 (15分) + 吉伊卡哇麵包店 ➔ KIDDYLAND (3分)</div>
-      <div class="card activity-card"><span class="activity-time">15:30 - 17:00</span><div class="activity-title">🥐 原宿購物：吉伊卡哇麵包店 / KIDDYLAND</div></div>
-      <div class="transport-card">N'EX 至成田機場 (80分)</div>
+      <div class="weather-card"><div>📍 新宿・原宿<br><span style="font-size:0.75rem;">最後採購日，祈禱是個大晴天！</span></div><div>🌤️</div></div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">09:30</span>
+        <div class="activity-title">🧳 退房出發</div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>錦糸町 ➔ 新宿</b><br>
+        <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 錦糸町 → 新宿 (直達)</span>
+        <span class="transit-time">🕒 總計 25 分鐘 (乘車)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">10:15 - 10:30 <span class="time-duration">15 分鐘</span></span>
+        <div class="activity-title">🔐 寄放行李</div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 攻略：將行李鎖在新宿車站內的投幣置物櫃。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>新宿車站 ➔ 牛舌的檸檬</b><br>
+        <span class="transit-time">🕒 總計 8 分鐘 (步行)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">11:30 - 12:30 <span class="time-duration">1 小時</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=新宿+牛舌的檸檬" target="_blank" class="map-link">🍋 新宿 牛舌的檸檬</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-eat">🍔 必點：招牌「極品厚切牛舌牛排定食」，粉嫩肉汁超飽滿！</div>
+          <div class="tag tag-res">🔴 超人氣店鋪，強烈建議提前一個月預約。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>新宿 ➔ 品川</b><br>
+        <span class="transit-route"><span class="line-badge bg-jr-green">JR 山手線</span> 新宿 → 品川 (直達)</span>
+        <span class="transit-time">🕒 總計 20 分鐘 (乘車)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">12:50 - 15:00 <span class="time-duration">2 小時 10 分鐘</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=品川王子大飯店" target="_blank" class="map-link">🌙 美少女戰士 Shining Theater</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊故事：位在品川王子大飯店，13:30 準時開始 6/22 月野兔生日特典場！<br>📸 12:50 提早抵達現場，預留 40 分鐘充裕時間拍照打卡！</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>品川 ➔ 原宿</b><br>
+        <span class="transit-route"><span class="line-badge bg-jr-green">JR 山手線</span> 品川 → 原宿 (直達)</span>
+        <span class="transit-time">🕒 總計 20 分鐘 (乘車 15分 + 步行 5分)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">15:30 - 16:15 <span class="time-duration">45 分鐘</span></span>
+        <div class="activity-title">
+          <a href="https://maps.app.goo.gl/PjaYK6oMGZW3phCR8" target="_blank" class="map-link">🥐 吉伊卡哇麵包店 (OMOCADO 3F)</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-res">🔴 必須提前官網抽籤預約！</div>
+          <div class="tag tag-eat">🍔 必買美食：角色造型奶油麵包 (吉伊卡哇卡士達/小八巧克力/兔兔焦糖)。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>吉伊卡哇麵包店 ➔ 購物區</b><br>
+        <span class="transit-time">🕒 總計 3 分鐘 (步行)</span>
+      </div>
+
+      <div class="card activity-card">
+        <span class="activity-time">16:15 - 17:00 <span class="time-duration">45 分鐘</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=焼とり+よね田+中野店" target="_blank" class="map-link">🧸 KIDDYLAND & Sailor Moon Store</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：Sailor Moon Store 位在 Laforet 原宿 B0.5F，逛完直接順路去斜對面的 KIDDYLAND！</div>
+          <div class="tag tag-buy">🛍️ 必買周邊：原宿本店限定的美少女戰士周邊、KIDDYLAND 各樓層熱門 IP 商品。</div>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        🚶‍♂️ <b>原宿 ➔ 新宿 (拿行李)</b><br>
+        <span class="transit-route"><span class="line-badge bg-jr-green">JR 山手線</span> 原宿 → 新宿 (直達)</span>
+        <span class="transit-time">🕒 總計 15 分鐘 (乘車 5分 + 步行找置物櫃 10分)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">17:15 - 17:45 <span class="time-duration">30 分鐘</span></span>
+        <div class="activity-title">🍱 準備與領行李</div>
+        <div class="tags-container">
+          <div class="tag tag-eat">🍔 導遊攻略：拿行李前，先在新宿百貨地下街買好和牛/海鮮火車便當。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>新宿 ➔ 成田機場</b><br>
+        <span class="transit-route"><span class="line-badge bg-jr-nex">N'EX 成田特快</span> 新宿 → 成田機場</span>
+        <span class="transit-time">🕒 總計 80 分鐘 (對號座直達，車上吃便當)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">19:30 - 20:30 <span class="time-duration">1 小時</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=成田機場" target="_blank" class="map-link">✈️ 成田機場最後衝刺 (Pokemon Store)</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-buy">🛍️ 必買推薦：Pokemon Store 尋找機場專屬「機長皮卡丘」。</div>
+        </div>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">22:10</span>
+        <div class="activity-title">🇹🇼 MM627 飛往台灣</div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 完美收尾：滿載二次元周邊與美好回憶回家！</div>
+        </div>
+      </div>
     </div>
 
     <div id="tab-info" class="day-view">
-      <div class="info-group"><div class="info-title">✈️ 航班資訊</div><p>捷星 GK012 / 樂桃 MM627</p></div>
-      <div class="info-group"><div class="info-title">🏨 住宿基地</div><p><a href="https://www.google.com/maps/place/sky+kinshicho+-+One-Bedroom+Apartment/@35.6932106,139.8128968,17z/data=!3m1!4b1!4m10!3m9!1s0x601889277616fe6f:0x2be2afa4d073b35b!5m2!4m1!1i2!8m2!3d35.6932106!4d139.8128968!16s%2Fg%2F11z5qw_8fv!17BQ0FF?entry=ttu&g_ep=EgoyMDI2MDQxNC4wIKXMDSoASAFQAw%3D%3D`。" target="_blank" class="map-link">Sky 錦糸町</a></p></div>
+      <div class="info-group">
+        <div class="info-title">✈️ 航班資訊</div>
+        <p><b>去程 (06/17)：</b>捷星 GK012 (02:05 飛 ➔ 06:30 抵達成田)</p>
+        <p><b>回程 (06/22)：</b>樂桃 MM627 (22:10 飛 ➔ 00:55 抵達台灣)</p>
+      </div>
+      <div class="info-group">
+        <div class="info-title">🏨 住宿基地</div>
+        <p>
+          <a href="https://www.google.com/maps/place/sky+kinshicho+-+One-Bedroom+Apartment/@35.6932106,139.8128968,17z/data=!3m1!4b1!4m10!3m9!1s0x601889277616fe6f:0x2be2afa4d073b35b!5m2!4m1!1i2!8m2!3d35.6932106!4d139.8128968!16s%2Fg%2F11z5qw_8fv!17BQ0FF?entry=ttu&g_ep=EgoyMDI2MDQxNC4wIKXMDSoASAFQAw%3D%3D`。" target="_blank" class="map-link" style="font-size: 1.05rem; font-weight: bold;">Sky 錦糸町 (南口)</a>
+        </p>
+        <p>墨田區江東橋2-1-4</p>
+      </div>
     </div>
 
     <div id="tab-checklist" class="day-view">
       <div class="info-group">
         <div class="info-title">✅ 行李分類清單</div>
-        <div class="checklist-category"><span class="checklist-category-title">🪪 證件</span><label class="check-item"><input type="checkbox"> 護照 / VJW截圖</label></div>
-        <div class="checklist-category"><span class="checklist-category-title">💴 金流</span><label class="check-item"><input type="checkbox"> 現金 / 轉蛋用硬幣</label></div>
+        
+        <div class="checklist-category">
+          <span class="checklist-category-title">🪪 證件與重要文件</span>
+          <label class="check-item"><input type="checkbox"> 護照 (有效期6個月以上)</label>
+          <label class="check-item"><input type="checkbox"> Visit Japan Web (QR Code 截圖)</label>
+          <label class="check-item"><input type="checkbox"> 航班/飯店/票券預約確認單 (紙本備份)</label>
+        </div>
+
+        <div class="checklist-category">
+          <span class="checklist-category-title">💴 金流與通訊</span>
+          <label class="check-item"><input type="checkbox"> 日幣現金 (含百圓硬幣轉蛋用)</label>
+          <label class="check-item"><input type="checkbox"> 信用卡 (建議至少一張JCB)</label>
+          <label class="check-item"><input type="checkbox"> eSIM / 網卡 / 漫遊確認</label>
+        </div>
+
+        <div class="checklist-category">
+          <span class="checklist-category-title">🔌 電子設備</span>
+          <label class="check-item"><input type="checkbox"> 行動電源 (容量需可帶上機)</label>
+          <label class="check-item"><input type="checkbox"> 充電線 / 充電頭 (多口佳)</label>
+          <label class="check-item"><input type="checkbox"> 耳機 (機上/車上使用)</label>
+        </div>
+
+        <div class="checklist-category">
+          <span class="checklist-category-title">🧥 衣物與個人用品</span>
+          <label class="check-item"><input type="checkbox"> 摺疊雨傘 (梅雨季必帶)</label>
+          <label class="check-item"><input type="checkbox"> 換洗衣物 (5-6天份)</label>
+          <label class="check-item"><input type="checkbox"> 盥洗用品 (若民宿未提供)</label>
+          <label class="check-item"><input type="checkbox"> 防曬乳 / 太陽眼鏡</label>
+        </div>
+
+        <div class="checklist-category">
+          <span class="checklist-category-title">💊 常備藥物</span>
+          <label class="check-item"><input type="checkbox"> 止痛藥 / 感冒藥 / 腸胃藥</label>
+          <label class="check-item"><input type="checkbox"> 休足時間 / 痠痛貼布 (每日必備)</label>
+          <label class="check-item"><input type="checkbox"> 個人慢性藥物</label>
+        </div>
+
+        <div class="checklist-category">
+          <span class="checklist-category-title">🛍️ 聖地巡禮/採購專區</span>
+          <label class="check-item"><input type="checkbox"> 大型環保購物袋 (裝公仔戰利品)</label>
+          <label class="check-item"><input type="checkbox"> 小夾鏈袋 (裝扭蛋小卡)</label>
+          <label class="check-item"><input type="checkbox"> 空行李箱空間 (預留一半重量)</label>
+        </div>
       </div>
     </div>
   </main>

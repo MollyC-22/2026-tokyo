@@ -142,9 +142,9 @@
   .bg-keio { background: #E6005C; }
   .bg-bus { background: #16a085; }
   
-  /* 手帳貼紙風 Tag */
+  /* 手帳貼紙風 Tag (修復多行錯位問題，改為 display: block) */
   .tags-container { display: flex; flex-direction: column; gap: 8px; margin-bottom: 6px; margin-top: 10px; }
-  .tag { font-size: 0.8rem; padding: 8px 12px; border-radius: 8px; font-weight: 700; display: inline-flex; align-items: flex-start; line-height: 1.5; box-shadow: 1px 1px 4px rgba(0,0,0,0.03); }
+  .tag { font-size: 0.8rem; padding: 8px 12px; border-radius: 8px; font-weight: 700; display: block; line-height: 1.5; box-shadow: 1px 1px 4px rgba(0,0,0,0.03); }
   .tag-eat { background: #FFF3E0; color: #E65100; border-left: 4px solid #FF9800; }
   .tag-buy { background: #E0F2F1; color: #00695C; border-left: 4px solid #26A69A; }
   .tag-guide { background: #F3E5F5; color: #4A148C; border-left: 4px solid #9C27B0; }
@@ -193,7 +193,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>成田機場 ➔ 錦糸町 (民宿)</b><br>
+        🚶‍♂️ <b>成田機場 ➔ 錦糸町 (民宿)</b>
         <span class="transit-time">🕒 總計 90 分鐘 (乘車 85分 + 步行 5分)</span>
         <span class="transit-route"><span class="line-badge bg-jr-blue">JR 總武線快速</span> 往東京/橫須賀方向</span>
       </div>
@@ -209,7 +209,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>錦糸町 ➔ 銀座/有樂町</b><br>
+        🚶‍♂️ <b>錦糸町 ➔ 銀座/有樂町</b>
         <span class="transit-time">🕒 總計 30 分鐘 (乘車 15分 + 步行轉乘 15分)</span>
         <span class="transit-route"><span class="line-badge bg-metro-hanzomon">半藏門線</span> 錦糸町 → 三越前</span>
         <span class="transit-route">🔄 轉乘：<span class="line-badge bg-metro-ginza">銀座線</span> 三越前 → 銀座</span>
@@ -244,7 +244,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>銀座 ➔ 澀谷 PARCO</b><br>
+        🚶‍♂️ <b>銀座 ➔ 澀谷 PARCO</b>
         <span class="transit-time">🕒 總計 22 分鐘 (乘車 16分 + 步行 6分)</span>
         <span class="transit-route"><span class="line-badge bg-metro-ginza">銀座線</span> 銀座 → 澀谷</span>
       </div>
@@ -261,7 +261,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>澀谷 ➔ 麻布台之丘</b><br>
+        🚶‍♂️ <b>澀谷 ➔ 麻布台之丘</b>
         <span class="transit-time">🕒 總計 28 分鐘 (乘車 20分 + 步行 8分)</span>
         <span class="transit-route"><span class="line-badge bg-metro-ginza">銀座線</span> 澀谷 → 虎之門</span>
         <span class="transit-route">🔄 轉乘：<span class="line-badge bg-metro-hibiya">日比谷線</span> 虎之門 → 神谷町</span>
@@ -278,7 +278,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>麻布台之丘 ➔ 錦糸町 (回大本營)</b><br>
+        🚶‍♂️ <b>麻布台之丘 ➔ 錦糸町 (回大本營)</b>
         <span class="transit-time">🕒 總計 35 分鐘 (乘車 30分 + 步行 5分)</span>
         <span class="transit-route"><span class="line-badge bg-metro-hibiya">日比谷線</span> 神谷町 → 秋葉原</span>
         <span class="transit-route">🔄 轉乘：<span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 秋葉原 → 錦糸町</span>
@@ -287,32 +287,11 @@
       <div class="card activity-card" style="border-top-color: #ff9f43;">
         <span class="activity-time" style="color: #ff9f43;">18:15 - 20:00</span>
         <div class="activity-title">🍽️ 晚餐備案：錦糸町大本營</div>
-        
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もり一+錦糸町店')">
-          <span class="icon">🍣</span> もり一 錦糸町店
-          <div class="tag tag-eat" style="margin-top:8px;">特色：超人氣迴轉壽司，必點炙燒鮭魚與紅醋飯壽司。</div>
-          <span class="hours">🕒 營業：11:00 - 22:00</span>
-        </div>
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=真鯛らーめん+麺魚+錦糸町本店')">
-          <span class="icon">🍜</span> 真鯛らーめん 麺魚
-          <div class="tag tag-eat" style="margin-top:8px;">特色：超濃厚真鯛魚湯拉麵，配上煙燻低溫叉燒。</div>
-          <span class="hours">🕒 營業：11:00 - 20:30 (打烊較早留意時間)</span>
-        </div>
-        <div class="btn-backup" onclick="window.open('https://maps.app.goo.gl/NERFRpRRFCEzdN3t6')">
-          <span class="icon">🥘</span> 月島もんじゃ はる
-          <div class="tag tag-eat" style="margin-top:8px;">特色：深夜不怕沒得吃，必點明太子起司文字燒、鐵板牛筋。</div>
-          <span class="hours">🕒 營業：17:00 - 翌05:00</span>
-        </div>
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=玉金+錦糸町')">
-          <span class="icon">🍳</span> 玉金 (Tamakin) 本店 / 2號店
-          <div class="tag tag-eat" style="margin-top:8px;">特色：平價鐵板燒與串燒居酒屋。</div>
-          <span class="hours">🕒 營業：本店至 0:00 / 分店至翌 1:00</span>
-        </div>
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もんじゃ+お好み焼+満月+錦糸町')">
-          <span class="icon">🥢</span> もんじゃ お好み焼 満月
-          <div class="tag tag-eat" style="margin-top:8px;">特色：在地溫馨風大阪燒與文字燒。</div>
-          <span class="hours">🕒 營業：晚餐時段至深夜</span>
-        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もり一+錦糸町店')"><span class="icon">🍣</span> もり一 錦糸町店<div class="tag tag-eat" style="margin-top:8px;">特色：超人氣迴轉壽司，必點炙燒鮭魚與紅醋飯壽司。</div><span class="hours">🕒 營業：11:00 - 22:00</span></div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=真鯛らーめん+麺魚+錦糸町本店')"><span class="icon">🍜</span> 真鯛らーめん 麺魚<div class="tag tag-eat" style="margin-top:8px;">特色：超濃厚真鯛魚湯拉麵，配上煙燻低溫叉燒。</div><span class="hours">🕒 營業：11:00 - 20:30 (打烊較早留意時間)</span></div>
+        <div class="btn-backup" onclick="window.open('https://maps.app.goo.gl/NERFRpRRFCEzdN3t6')"><span class="icon">🥘</span> 月島もんじゃ はる<div class="tag tag-eat" style="margin-top:8px;">特色：深夜不怕沒得吃，必點明太子起司文字燒、鐵板牛筋。</div><span class="hours">🕒 營業：17:00 - 翌05:00</span></div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=玉金+錦糸町')"><span class="icon">🍳</span> 玉金 (Tamakin) 本店 / 2號店<div class="tag tag-eat" style="margin-top:8px;">特色：平價鐵板燒與串燒居酒屋。</div><span class="hours">🕒 營業：本店至 0:00 / 分店至翌 1:00</span></div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もんじゃ+お好み焼+満月+錦糸町')"><span class="icon">🥢</span> もんじゃ お好み焼 満月<div class="tag tag-eat" style="margin-top:8px;">特色：在地溫馨風大阪燒與文字燒。</div><span class="hours">🕒 營業：晚餐時段至深夜</span></div>
       </div>
     </div>
 
@@ -328,7 +307,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>錦糸町 ➔ 迪士尼海洋 (巴士)</b><br>
+        🚶‍♂️ <b>錦糸町 ➔ 迪士尼海洋 (巴士)</b>
         <span class="transit-time">🕒 總計 46 分鐘 (步行 11分 + 乘車 35分)</span>
         <span class="transit-route">📍 <a href="https://maps.app.goo.gl/pQHJNA1ZzeJGo4XT7" target="_blank" style="color:var(--primary); font-weight:bold;">錦糸町站南口 巴士站</a> (車資 1,000日幣/人)</span>
       </div>
@@ -345,7 +324,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>迪士尼海洋 ➔ 錦糸町 (回程)</b><br>
+        🚶‍♂️ <b>迪士尼海洋 ➔ 錦糸町 (回程)</b>
         <span class="transit-time">🕒 總計約 50 分鐘 (乘車 35分 + 步行與轉乘 15分)</span>
         <span class="transit-route"><span class="line-badge bg-jr-nex" style="background:#c0392b;">JR 京葉線</span> 舞濱 → 東京站</span>
         <span class="transit-route">🔄 站內轉乘：<span class="line-badge bg-jr-blue">JR 總武線快速</span> 東京 → 錦糸町</span>
@@ -387,7 +366,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>錦糸町 ➔ 池袋</b><br>
+        🚶‍♂️ <b>錦糸町 ➔ 池袋</b>
         <span class="transit-time">🕒 總計 43 分鐘 (乘車 35分 + 步行 8分)</span>
         <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 總武線</span> 錦糸町 → 秋葉原</span>
         <span class="transit-route">🔄 轉乘：<span class="line-badge bg-jr-green">JR 山手線</span> 秋葉原 → 池袋</span>
@@ -415,7 +394,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>陽光城 ➔ 吉伊卡哇拉麵</b><br>
+        🚶‍♂️ <b>陽光城 ➔ 吉伊卡哇拉麵</b>
         <span class="transit-time">🕒 總計 8 分鐘 (池袋商圈內步行)</span>
       </div>
       
@@ -432,7 +411,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>吉伊卡哇拉麵 ➔ Animate 池袋總店</b><br>
+        🚶‍♂️ <b>吉伊卡哇拉麵 ➔ Animate 池袋總店</b>
         <span class="transit-time">🕒 總計 5 分鐘 (池袋商圈內步行)</span>
       </div>
       
@@ -447,7 +426,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>Animate ➔ 晚餐餐廳</b><br>
+        🚶‍♂️ <b>Animate ➔ 晚餐餐廳</b>
         <span class="transit-time">🕒 總計 5 分鐘 (池袋商圈內步行)</span>
       </div>
       
@@ -466,7 +445,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>池袋 ➔ 錦糸町 (回程)</b><br>
+        🚶‍♂️ <b>池袋 ➔ 錦糸町 (回程)</b>
         <span class="transit-time">🕒 總計 40 分鐘 (乘車 35分 + 步行 5分)</span>
         <span class="transit-route"><span class="line-badge bg-jr-green">JR 山手線</span> 池袋 → 秋葉原</span>
         <span class="transit-route">🔄 轉乘：<span class="line-badge bg-jr-yellow">JR 總武線</span> 秋葉原 → 錦糸町</span>
@@ -486,7 +465,7 @@
       <div class="weather-card"><div>📍 讀賣樂園 (寶可夢樂園)<br><span style="font-size:0.75rem;">遊樂園以戶外為主，留意防曬與補充水分。</span></div><div>☀️</div></div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>錦糸町 ➔ 讀賣樂園</b><br>
+        🚶‍♂️ <b>錦糸町 ➔ 讀賣樂園</b>
         <span class="transit-time">🕒 總車程約 70 分鐘 (乘車 60分 + 轉乘步行 10分)</span>
         <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 錦糸町 → 新宿</span>
         <span class="transit-route">🔄 轉乘：<span class="line-badge bg-keio">京王線</span> 新宿 → 京王讀賣樂園站</span>
@@ -507,13 +486,19 @@
         <span class="activity-time">當日表演時程</span>
         <div class="activity-title">🎭 必看表演清單</div>
         <div class="tags-container">
-          <div class="tag tag-eat">🫧 <b>皮卡布泡泡嘉年華 (遊行)</b><br>13:15 / 15:45 (戶外場次)</div>
-          <div class="tag tag-guide">✨ <b>皮卡皮卡電光閃閃 (室內)</b><br>16:45 - 17:10 (請於 16:25 入場)</div>
+          <div class="tag tag-eat">
+            <div style="margin-bottom: 4px;">🫧 <b>皮卡布泡泡嘉年華 (遊行)</b></div>
+            <div style="color: #d35400; font-weight: bold;">🕒 13:15 / 15:45 (戶外場次)</div>
+          </div>
+          <div class="tag tag-guide">
+            <div style="margin-bottom: 4px;">✨ <b>皮卡皮卡電光閃閃 (室內)</b></div>
+            <div style="color: #6a1b9a; font-weight: bold;">🕒 16:45 - 17:10 (請於 16:25 入場)</div>
+          </div>
         </div>
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>讀賣樂園 ➔ 中野</b><br>
+        🚶‍♂️ <b>讀賣樂園 ➔ 中野</b>
         <span class="transit-time">🕒 總計 50 分鐘 (乘車 45分 + 步行 5分)</span>
         <span class="transit-route">🚠 18:00 閉園，請於 17:45-18:00 之間前往搭乘纜車離開 (順便看夕陽夜景！)</span>
         <span class="transit-route"><span class="line-badge bg-keio">京王線</span> 回新宿站</span>
@@ -549,7 +534,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>串燒店 ➔ Bar DIO</b><br>
+        🚶‍♂️ <b>串燒店 ➔ Bar DIO</b>
         <span class="transit-time">🕒 總計 3 分鐘 (中野商圈內步行)</span>
       </div>
       
@@ -565,7 +550,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>中野 ➔ 錦糸町 (回程)</b><br>
+        🚶‍♂️ <b>中野 ➔ 錦糸町 (回程)</b>
         <span class="transit-time">🕒 總計 35 分鐘 (乘車 30分 + 步行 5分)</span>
         <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 中野 → 錦糸町 (直達)</span>
       </div>
@@ -575,7 +560,7 @@
       <div class="weather-card"><div>📍 富士山<br><span style="font-size:0.75rem;">山區氣候變化大，請攜帶防風外套與雨具！</span></div><div>🗻</div></div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>錦糸町 ➔ 東京站 (集合點)</b><br>
+        🚶‍♂️ <b>錦糸町 ➔ 東京站 (集合點)</b>
         <span class="transit-time">🕒 總計 18 分鐘 (乘車 8分 + 步行找集合點 10分)</span>
         <span class="transit-route"><span class="line-badge bg-jr-blue">JR 總武線快速</span> 錦糸町 → 東京 (直達)</span>
       </div>
@@ -646,7 +631,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>下車點 ➔ 伊吹壽喜燒</b><br>
+        🚶‍♂️ <b>下車點 ➔ 伊吹壽喜燒</b>
         <span class="transit-time">🕒 總計 8 分鐘 (步行)</span>
       </div>
       
@@ -662,7 +647,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>新宿 ➔ 錦糸町 (回程)</b><br>
+        🚶‍♂️ <b>新宿 ➔ 錦糸町 (回程)</b>
         <span class="transit-time">🕒 總計 30 分鐘 (乘車 25分 + 步行 5分)</span>
         <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 新宿 → 錦糸町 (直達)</span>
       </div>
@@ -680,7 +665,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>錦糸町 ➔ 新宿</b><br>
+        🚶‍♂️ <b>錦糸町 ➔ 新宿</b>
         <span class="transit-time">🕒 總計 25 分鐘 (乘車)</span>
         <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 錦糸町 → 新宿 (直達)</span>
       </div>
@@ -694,7 +679,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>新宿車站 ➔ 牛舌的檸檬</b><br>
+        🚶‍♂️ <b>新宿車站 ➔ 牛舌的檸檬</b>
         <span class="transit-time">🕒 總計 8 分鐘 (步行)</span>
       </div>
       
@@ -710,7 +695,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>新宿 ➔ 品川</b><br>
+        🚶‍♂️ <b>新宿 ➔ 品川</b>
         <span class="transit-time">🕒 總計 20 分鐘 (乘車)</span>
         <span class="transit-route"><span class="line-badge bg-jr-green">JR 山手線</span> 新宿 → 品川 (直達)</span>
       </div>
@@ -726,7 +711,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>品川 ➔ 原宿</b><br>
+        🚶‍♂️ <b>品川 ➔ 原宿</b>
         <span class="transit-time">🕒 總計 20 分鐘 (乘車 15分 + 步行 5分)</span>
         <span class="transit-route"><span class="line-badge bg-jr-green">JR 山手線</span> 品川 → 原宿 (直達)</span>
       </div>
@@ -743,7 +728,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>吉伊卡哇麵包店 ➔ 購物區</b><br>
+        🚶‍♂️ <b>吉伊卡哇麵包店 ➔ 購物區</b>
         <span class="transit-time">🕒 總計 3 分鐘 (步行)</span>
       </div>
 
@@ -759,7 +744,7 @@
       </div>
 
       <div class="transport-card">
-        🚶‍♂️ <b>原宿 ➔ 新宿 (拿行李)</b><br>
+        🚶‍♂️ <b>原宿 ➔ 新宿 (拿行李)</b>
         <span class="transit-time">🕒 總計 15 分鐘 (乘車 5分 + 步行找置物櫃 10分)</span>
         <span class="transit-route"><span class="line-badge bg-jr-green">JR 山手線</span> 原宿 → 新宿 (直達)</span>
       </div>
@@ -773,7 +758,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>新宿 ➔ 成田機場</b><br>
+        🚶‍♂️ <b>新宿 ➔ 成田機場</b>
         <span class="transit-time">🕒 總計 80 分鐘 (對號座直達，車上吃便當)</span>
         <span class="transit-route"><span class="line-badge bg-jr-nex">N'EX 成田特快</span> 新宿 → 成田機場</span>
       </div>

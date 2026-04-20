@@ -125,9 +125,9 @@
   }
   .transport-card b { color: #4A3A40; }
   
-  /* 新增交通排版樣式 */
-  .transit-time { font-size: 0.8rem; color: #D87093; font-weight: bold; margin-left: 4px; }
-  .transit-route { display: block; margin-top: 4px; }
+  /* 交通排版樣式修正：強制換行到第二行 */
+  .transit-time { font-size: 0.85rem; color: #D87093; font-weight: bold; margin-left: 4px; }
+  .transit-route { display: block; margin-top: 4px; color: #777;}
 
   /* 地鐵線路小貼紙 */
   .line-badge { display: inline-block; padding: 3px 8px; border-radius: 6px; color: white; font-weight: bold; font-size: 0.7rem; margin-right: 4px; box-shadow: 1px 2px 3px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05); }
@@ -208,7 +208,7 @@
       </div>
       
       <div class="transport-card">
-        🚶‍♂️ <b>錦糸町 ➔ 銀座</b> <span class="transit-time">🕒 總計 30 分鐘 (乘車 15分 + 步行轉乘 15分)</span><br>
+        🚶‍♂️ <b>錦糸町 ➔ 銀座/有樂町</b> <span class="transit-time">🕒 總計 30 分鐘 (乘車 15分 + 步行轉乘 15分)</span><br>
         <span class="transit-route"><span class="line-badge bg-metro-hanzomon">半藏門線</span> 錦糸町 → 三越前</span>
         <span class="transit-route">🔄 轉乘：<span class="line-badge bg-metro-ginza">銀座線</span> 三越前 → 銀座</span>
       </div>
@@ -216,6 +216,10 @@
       <div class="card activity-card" style="border-top-color: #ff9f43;">
         <span class="activity-time" style="color: #ff9f43;">09:30 - 10:45 <span class="time-duration">1.25 小時</span></span>
         <div class="activity-title">☕ 悠哉早餐備案</div>
+        <div class="btn-backup" onclick="window.open('https://maps.app.goo.gl/b7jmXGXZgqpX4asN8')">
+          <span class="icon">☕</span> 客美多咖啡 有樂町BicCamera店
+          <div class="tag tag-eat" style="margin-top:8px;">🍔 必點：11:00前「點飲料送吐司」Morning Service，超划算！</div>
+        </div>
         <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=銀座木村家')">
           <span class="icon">🥐</span> 木村家銀座總店
           <div class="tag tag-eat" style="margin-top:8px;">🍔 必點：招牌「酒種紅豆麵包」，保留百年明治天皇也愛的傳統發酵工法。</div>
@@ -265,7 +269,7 @@
           <a href="https://www.google.com/maps/search/?api=1&query=麻布台之丘" target="_blank" class="map-link">🖼️ 麻布台之丘 (JOJO原畫展)</a>
         </div>
         <div class="tags-container">
-          <div class="tag tag-guide">📖 導遊介紹：這裡是日本最新第一高樓，重點任務是參觀集英社 Manga-Art Heritage 原畫展。</div>
+          <div class="tag tag-guide">📖 導遊介紹：日本最新第一高樓，重點任務是參觀集英社原畫展。</div>
         </div>
       </div>
       
@@ -278,32 +282,11 @@
       <div class="card activity-card" style="border-top-color: #ff9f43;">
         <span class="activity-time" style="color: #ff9f43;">18:15 - 20:00</span>
         <div class="activity-title">🍽️ 晚餐備案：錦糸町大本營</div>
-        
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もり一+錦糸町店')">
-          <span class="icon">🍣</span> もり一 錦糸町店
-          <div class="tag tag-eat" style="margin-top:8px;">特色：超人氣迴轉壽司，必點炙燒鮭魚與紅醋飯壽司。</div>
-          <span class="hours">🕒 營業：11:00 - 22:00</span>
-        </div>
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=真鯛らーめん+麺魚+錦糸町本店')">
-          <span class="icon">🍜</span> 真鯛らーめん 麺魚
-          <div class="tag tag-eat" style="margin-top:8px;">特色：超濃厚真鯛魚湯拉麵，配上煙燻低溫叉燒。</div>
-          <span class="hours">🕒 營業：11:00 - 20:30 (打烊較早留意時間)</span>
-        </div>
-        <div class="btn-backup" onclick="window.open('https://maps.app.goo.gl/NERFRpRRFCEzdN3t6')">
-          <span class="icon">🥘</span> 月島もんじゃ はる
-          <div class="tag tag-eat" style="margin-top:8px;">特色：深夜不怕沒得吃，必點明太子起司文字燒、鐵板牛筋。</div>
-          <span class="hours">🕒 營業：17:00 - 翌05:00</span>
-        </div>
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=玉金+錦糸町')">
-          <span class="icon">🍳</span> 玉金 (Tamakin) 本店 / 2號店
-          <div class="tag tag-eat" style="margin-top:8px;">特色：平價鐵板燒與串燒居酒屋。</div>
-          <span class="hours">🕒 營業：本店至 0:00 / 分店至翌 1:00</span>
-        </div>
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もんじゃ+お好み焼+満月+錦糸町')">
-          <span class="icon">🥢</span> もんじゃ お好み焼 満月
-          <div class="tag tag-eat" style="margin-top:8px;">特色：在地溫馨風大阪燒與文字燒。</div>
-          <span class="hours">🕒 營業：晚餐時段至深夜</span>
-        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もり一+錦糸町店')"><span class="icon">🍣</span> もり一 錦糸町店<div class="tag tag-eat" style="margin-top:8px;">特色：超人氣迴轉壽司，必點炙燒鮭魚與紅醋飯壽司。</div><span class="hours">🕒 營業：11:00 - 22:00</span></div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=真鯛らーめん+麺魚+錦糸町本店')"><span class="icon">🍜</span> 真鯛らーめん 麺魚<div class="tag tag-eat" style="margin-top:8px;">特色：超濃厚真鯛魚湯拉麵，配上煙燻低溫叉燒。</div><span class="hours">🕒 營業：11:00 - 20:30 (打烊較早留意時間)</span></div>
+        <div class="btn-backup" onclick="window.open('https://maps.app.goo.gl/NERFRpRRFCEzdN3t6')"><span class="icon">🥘</span> 月島もんじゃ はる<div class="tag tag-eat" style="margin-top:8px;">特色：深夜不怕沒得吃，必點明太子起司文字燒、鐵板牛筋。</div><span class="hours">🕒 營業：17:00 - 翌05:00</span></div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=玉金+錦糸町')"><span class="icon">🍳</span> 玉金 (Tamakin) 本店 / 2號店<div class="tag tag-eat" style="margin-top:8px;">特色：平價鐵板燒與串燒居酒屋。</div><span class="hours">🕒 營業：本店至 0:00 / 分店至翌 1:00</span></div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=もんじゃ+お好み焼+満月+錦糸町')"><span class="icon">🥢</span> もんじゃ お好み焼 満月<div class="tag tag-eat" style="margin-top:8px;">特色：在地溫馨風大阪燒與文字燒。</div><span class="hours">🕒 營業：晚餐時段至深夜</span></div>
       </div>
     </div>
 
@@ -460,13 +443,89 @@
         <span class="activity-time" style="color: #7ed6df;">21:45 - 23:15 <span class="time-duration">1.5 小時</span></span>
         <div class="activity-title">🛍️ 導遊私心建議：深夜採購戰</div>
         <div class="tags-container">
-          <div class="tag tag-guide">📖 導遊攻略：室內行程體力消耗較少，洗完澡後可步行至北口「唐吉訶德 錦糸町店」。</div>
+          <div class="tag tag-guide">📖 導遊攻略：今日室內行程體力消耗較少，洗完澡後可步行至北口「唐吉訶德 錦糸町店」。</div>
           <div class="tag tag-buy">🛍️ 採買重點：藥妝、零食一站購足，開到凌晨 4:00！</div>
         </div>
       </div>
     </div>
 
     <div id="day4" class="day-view">
+      <div class="weather-card"><div>📍 讀賣樂園・中野<br><span style="font-size:0.75rem;">遊樂園以戶外為主，留意防曬與補充水分。</span></div><div>☀️</div></div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>錦糸町 ➔ 讀賣樂園</b> <span class="transit-time">🕒 總車程約 70 分鐘 (乘車 60分 + 轉乘步行 10分)</span><br>
+        <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 錦糸町 → 新宿</span>
+        <span class="transit-route">🔄 轉乘：<span class="line-badge bg-keio">京王線</span> 新宿 → 京王讀賣樂園站</span>
+        <span class="transit-route">🚠 轉乘：空中纜車 (Sky Shuttle) 直達</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">10:00 - 18:00 <span class="time-duration">8 小時</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=讀賣樂園" target="_blank" class="map-link">🐶 PokéPark KANTO 寶可夢樂園</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：直奔「草紗鎮」，去寶可夢中心看吉利蛋笑臉！必玩皮卡丘電力天堂與伊布旋轉之旅。</div>
+          <div class="tag tag-buy">🛍️ 必買推薦：園區限定「角色變身頭飾」，戴上拍照超有 Fu。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>讀賣樂園 ➔ 中野</b> <span class="transit-time">🕒 總計 50 分鐘 (乘車 45分 + 步行 5分)</span><br>
+        <span class="transit-route"><span class="line-badge bg-keio">京王線</span> 回新宿站</span>
+        <span class="transit-route">🔄 轉乘：<span class="line-badge bg-jr-orange">JR 中央線</span> 新宿 → 中野</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">19:15 - 20:00 <span class="time-duration">45 分</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=中野百老匯" target="_blank" class="map-link">🏬 中野百老匯</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-guide">📖 導遊攻略：極速挖寶！多數模型店家 20:00 準時關門。</div>
+        </div>
+      </div>
+      
+      <div class="card activity-card" style="border-top-color: #ff9f43;">
+        <span class="activity-time" style="color: #ff9f43;">20:00 - 21:00</span>
+        <div class="activity-title">🍻 晚餐備案：中野北口串燒</div>
+        
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=四文屋+中野北口店')">
+          <span class="icon">🍻</span> 四文屋 中野北口店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：超道地熱鬧氣氛，必點平價烤豬雜。</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=鳥貴族+中野北口店')">
+          <span class="icon">🍗</span> 鳥貴族 中野北口店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：平板無腦點餐，必點雞腿肉串、高麗菜。</div>
+        </div>
+        <div class="btn-backup" onclick="window.open('https://maps.app.goo.gl/Yoneda')">
+          <span class="icon">🐔</span> 焼とり よね田 (Yoneda) 中野店
+          <div class="tag tag-eat" style="margin-top:8px;">特色：超人氣燒鳥居酒屋，必點超巨大「手作雞肉丸」。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>串燒店 ➔ Bar DIO</b> <span class="transit-time">🕒 總計 3 分鐘 (中野商圈內步行)</span>
+      </div>
+      
+      <div class="card activity-card">
+        <span class="activity-time">21:00 - 23:00 <span class="time-duration">2 小時</span></span>
+        <div class="activity-title">
+          <a href="https://www.google.com/maps/search/?api=1&query=Bar+DIO+中野" target="_blank" class="map-link">🍸 Bar DIO (中野 JOJO 酒吧)</a>
+        </div>
+        <div class="tags-container">
+          <div class="tag tag-eat">🍔 必點：請調酒師為你特製一杯「專屬替身調酒」！</div>
+          <div class="tag tag-guide">🔴 備註：營業時間至 23:00。</div>
+        </div>
+      </div>
+      
+      <div class="transport-card">
+        🚶‍♂️ <b>中野 ➔ 錦糸町 (回程)</b> <span class="transit-time">🕒 總計 35 分鐘 (乘車 30分 + 步行 5分)</span><br>
+        <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 中野 → 錦糸町 (直達)</span>
+      </div>
+    </div>
+
+    <div id="day5" class="day-view">
       <div class="weather-card"><div>📍 富士山<br><span style="font-size:0.75rem;">山區氣候變化大，請攜帶防風外套與雨具！</span></div><div>🗻</div></div>
       
       <div class="transport-card">
@@ -557,82 +616,6 @@
       <div class="transport-card">
         🚶‍♂️ <b>新宿 ➔ 錦糸町 (回程)</b> <span class="transit-time">🕒 總計 30 分鐘 (乘車 25分 + 步行 5分)</span><br>
         <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 新宿 → 錦糸町 (直達)</span>
-      </div>
-    </div>
-
-    <div id="day5" class="day-view">
-      <div class="weather-card"><div>📍 讀賣樂園・中野<br><span style="font-size:0.75rem;">遊樂園以戶外為主，留意防曬與補充水分。</span></div><div>☀️</div></div>
-      
-      <div class="transport-card">
-        🚶‍♂️ <b>錦糸町 ➔ 讀賣樂園</b> <span class="transit-time">🕒 總車程約 60-70 分鐘</span><br>
-        <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 錦糸町 → 新宿</span>
-        <span class="transit-route">🔄 轉乘：<span class="line-badge bg-keio">京王線</span> 新宿 → 京王讀賣樂園站</span>
-        <span class="transit-route">🚠 轉乘：空中纜車 (Sky Shuttle) 直達</span>
-      </div>
-      
-      <div class="card activity-card">
-        <span class="activity-time">10:00 - 18:00 <span class="time-duration">8 小時</span></span>
-        <div class="activity-title">
-          <a href="https://www.google.com/maps/search/?api=1&query=讀賣樂園" target="_blank" class="map-link">🐶 PokéPark KANTO 寶可夢樂園</a>
-        </div>
-        <div class="tags-container">
-          <div class="tag tag-guide">📖 導遊攻略：直奔「草紗鎮」，去寶可夢中心看吉利蛋笑臉！必玩皮卡丘電力天堂與伊布旋轉之旅。</div>
-          <div class="tag tag-buy">🛍️ 必買推薦：園區限定「角色變身頭飾」，戴上拍照超有 Fu。</div>
-        </div>
-      </div>
-      
-      <div class="transport-card">
-        🚶‍♂️ <b>讀賣樂園 ➔ 中野</b> <span class="transit-time">🕒 總計 50 分鐘 (乘車 45分 + 步行 5分)</span><br>
-        <span class="transit-route"><span class="line-badge bg-keio">京王線</span> 回新宿站</span>
-        <span class="transit-route">🔄 轉乘：<span class="line-badge bg-jr-orange">JR 中央線</span> 新宿 → 中野</span>
-      </div>
-      
-      <div class="card activity-card">
-        <span class="activity-time">19:15 - 20:00 <span class="time-duration">45 分</span></span>
-        <div class="activity-title">
-          <a href="https://www.google.com/maps/search/?api=1&query=中野百老匯" target="_blank" class="map-link">🏬 中野百老匯</a>
-        </div>
-        <div class="tags-container">
-          <div class="tag tag-guide">📖 導遊攻略：極速挖寶！多數模型店家 20:00 準時關門。</div>
-        </div>
-      </div>
-      
-      <div class="card activity-card" style="border-top-color: #ff9f43;">
-        <span class="activity-time" style="color: #ff9f43;">20:00 - 21:00</span>
-        <div class="activity-title">🍻 晚餐備案：中野北口串燒</div>
-        
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=四文屋+中野北口店')">
-          <span class="icon">🍻</span> 四文屋 中野北口店
-          <div class="tag tag-eat" style="margin-top:8px;">特色：超道地熱鬧氣氛，必點平價烤豬雜。</div>
-        </div>
-        <div class="btn-backup" onclick="window.open('https://www.google.com/maps/search/?api=1&query=鳥貴族+中野北口店')">
-          <span class="icon">🍗</span> 鳥貴族 中野北口店
-          <div class="tag tag-eat" style="margin-top:8px;">特色：平板無腦點餐，必點雞腿肉串、高麗菜。</div>
-        </div>
-        <div class="btn-backup" onclick="window.open('https://maps.app.goo.gl/Yoneda')">
-          <span class="icon">🐔</span> 焼とり よね田 (Yoneda) 中野店
-          <div class="tag tag-eat" style="margin-top:8px;">特色：超人氣燒鳥居酒屋，必點超巨大「手作雞肉丸」。</div>
-        </div>
-      </div>
-      
-      <div class="transport-card">
-        🚶‍♂️ <b>串燒店 ➔ Bar DIO</b> <span class="transit-time">🕒 總計 3 分鐘 (中野商圈內步行)</span>
-      </div>
-      
-      <div class="card activity-card">
-        <span class="activity-time">21:00 - 23:00 <span class="time-duration">2 小時</span></span>
-        <div class="activity-title">
-          <a href="https://www.google.com/maps/search/?api=1&query=Bar+DIO+中野" target="_blank" class="map-link">🍸 Bar DIO (中野 JOJO 酒吧)</a>
-        </div>
-        <div class="tags-container">
-          <div class="tag tag-eat">🍔 必點：請調酒師為你特製一杯「專屬替身調酒」！</div>
-          <div class="tag tag-guide">🔴 備註：營業時間至 23:00。</div>
-        </div>
-      </div>
-      
-      <div class="transport-card">
-        🚶‍♂️ <b>中野 ➔ 錦糸町 (回程)</b> <span class="transit-time">🕒 總計 35 分鐘 (乘車 30分 + 步行 5分)</span><br>
-        <span class="transit-route"><span class="line-badge bg-jr-yellow">JR 中央·總武線</span> 中野 → 錦糸町 (直達)</span>
       </div>
     </div>
 

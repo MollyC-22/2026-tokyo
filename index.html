@@ -863,7 +863,11 @@
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.getElementById('nav-itinerary').classList.add('active');
     document.getElementById('day-bar').style.display = 'flex';
+    
+    // 👇 就是這行魔法指令！讓每次切換天數時，畫面自動滾動回最上方
+    document.getElementById('main-content').scrollTop = 0;
   }
+  
   function switchMainTab(tabType) {
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.querySelectorAll('.day-view').forEach(v => v.classList.remove('active'));
@@ -875,10 +879,12 @@
       document.getElementById('nav-info').classList.add('active');
       document.getElementById('tab-info').classList.add('active');
       document.getElementById('day-bar').style.display = 'none';
+      document.getElementById('main-content').scrollTop = 0; // 航班住宿頁也自動回頂部
     } else if (tabType === 'checklist') {
       document.getElementById('nav-checklist').classList.add('active');
       document.getElementById('tab-checklist').classList.add('active');
       document.getElementById('day-bar').style.display = 'none';
+      document.getElementById('main-content').scrollTop = 0; // 行李清單頁也自動回頂部
     }
   }
 </script>

@@ -168,6 +168,20 @@
   .checklist-category-title { font-size: 0.95rem; color: white; background: var(--primary); padding: 4px 10px; border-radius: 6px; font-weight: 900; margin-bottom: 12px; display: inline-block; }
   .check-item { display: flex; align-items: center; margin-bottom: 12px; font-size: 0.9rem; color: #444; font-weight: bold;}
   .check-item input { margin-right: 12px; width: 18px; height: 18px; accent-color: var(--primary); }
+
+/* 優惠券專屬樣式 */
+  .coupon-card {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fff; padding: 15px; border-radius: 12px; margin-bottom: 12px;
+    border: 1.5px dashed #FFD1DC; text-decoration: none; color: #444; font-weight: bold;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.03); transition: 0.2s;
+  }
+  .coupon-card:active { background: #FFF0F5; transform: scale(0.98); }
+  .coupon-icon { font-size: 1.5rem; margin-right: 12px; }
+  .coupon-text { flex: 1; }
+  .coupon-action { font-size: 0.8rem; background: var(--primary); color: white; padding: 4px 10px; border-radius: 20px; font-weight: 900; }
+  .coupon-action.link { background: #4CAF50; }
+
 </style>
 </head>
 <body>
@@ -897,12 +911,81 @@
         </div>
       </div>
     </div>
+
+
+<!-- COUPON TAB -->
+    <div id="tab-coupons" class="day-view">
+      <div class="info-group">
+        <div class="info-title">🎟️ 專屬優惠券 (結帳神隊友)</div>
+        <div class="tags-container" style="margin-top:0; margin-bottom:15px;">
+          <div class="tag tag-guide">💡 提示：點擊圖片優惠券會全螢幕開啟，方便您直接用手指放大縮小、給店員掃描條碼喔！</div>
+        </div>
+        
+        <!-- 1. BIC CAMERA -->
+        <a href="coupon-biccamera.jpg" target="_blank" class="coupon-card">
+          <span class="coupon-icon">📷</span>
+          <span class="coupon-text">BIC CAMERA 必酷</span>
+          <span class="coupon-action">出示圖片</span>
+        </a>
+
+        <!-- 2. 唐吉軻德 -->
+        <a href="https://japanportal.donki-global.com/coupon/cp001_zhtw.html" target="_blank" class="coupon-card">
+          <span class="coupon-icon">🐧</span>
+          <span class="coupon-text">驚安殿堂 唐吉訶德</span>
+          <span class="coupon-action link">點擊發券</span>
+        </a>
+        
+        <!-- 3. JINS -->
+        <a href="coupon-jins.jpg" target="_blank" class="coupon-card">
+          <span class="coupon-icon">👓</span>
+          <span class="coupon-text">JINS 眼鏡</span>
+          <span class="coupon-action">出示圖片</span>
+        </a>
+
+        <!-- 4. 松本清 -->
+        <a href="coupon-matsukiyo.jpg" target="_blank" class="coupon-card">
+          <span class="coupon-icon">💊</span>
+          <span class="coupon-text">松本清 藥妝</span>
+          <span class="coupon-action">出示圖片</span>
+        </a>
+
+        <!-- 5. COSMOS -->
+        <a href="coupon-cosmos.jpg" target="_blank" class="coupon-card">
+          <span class="coupon-icon">🌸</span>
+          <span class="coupon-text">COSMOS 科摩司藥妝</span>
+          <span class="coupon-action">出示圖片</span>
+        </a>
+
+        <!-- 6. Fa-So-La 免稅店 -->
+        <a href="coupon-fasola.jpg" target="_blank" class="coupon-card">
+          <span class="coupon-icon">✈️</span>
+          <span class="coupon-text">Fa-So-La 免稅店</span>
+          <span class="coupon-action">出示圖片</span>
+        </a>
+
+        <!-- 7. JAPAN DUTY FREE -->
+        <a href="coupon-japandutyfree.jpg" target="_blank" class="coupon-card">
+          <span class="coupon-icon">🛍️</span>
+          <span class="coupon-text">JAPAN DUTY FREE</span>
+          <span class="coupon-action">出示圖片</span>
+        </a>
+
+        <!-- 8. ANA 免稅店 -->
+        <a href="coupon-ana.jpg" target="_blank" class="coupon-card">
+          <span class="coupon-icon">🛫</span>
+          <span class="coupon-text">ANA 全日空 免稅店</span>
+          <span class="coupon-action">出示圖片</span>
+        </a>
+      </div>
+    </div>
+    
   </main>
 
-  <nav class="bottom-nav">
+<nav class="bottom-nav">
     <div class="nav-item active" id="nav-itinerary" onclick="switchMainTab('itinerary')"><span class="nav-icon">📅</span>行程</div>
-    <div class="nav-item" id="nav-info" onclick="switchMainTab('info')"><span class="nav-icon">🧳</span>航班住宿</div>
+    <div class="nav-item" id="nav-info" onclick="switchMainTab('info')"><span class="nav-icon">🧳</span>機+酒</div>
     <div class="nav-item" id="nav-checklist" onclick="switchMainTab('checklist')"><span class="nav-icon">✅</span>清單</div>
+    <div class="nav-item" id="nav-coupons" onclick="switchMainTab('coupons')"><span class="nav-icon">🎟️</span>優惠</div>
   </nav>
 </div>
 
@@ -922,7 +1005,7 @@
     document.getElementById('main-content').scrollTop = 0;
   }
   
-  function switchMainTab(tabType) {
+function switchMainTab(tabType) {
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.querySelectorAll('.day-view').forEach(v => v.classList.remove('active'));
     if (tabType === 'itinerary') {
@@ -933,12 +1016,17 @@
       document.getElementById('nav-info').classList.add('active');
       document.getElementById('tab-info').classList.add('active');
       document.getElementById('day-bar').style.display = 'none';
-      document.getElementById('main-content').scrollTop = 0; // 航班住宿頁也自動回頂部
+      document.getElementById('main-content').scrollTop = 0;
     } else if (tabType === 'checklist') {
       document.getElementById('nav-checklist').classList.add('active');
       document.getElementById('tab-checklist').classList.add('active');
       document.getElementById('day-bar').style.display = 'none';
-      document.getElementById('main-content').scrollTop = 0; // 行李清單頁也自動回頂部
+      document.getElementById('main-content').scrollTop = 0;
+    } else if (tabType === 'coupons') {
+      document.getElementById('nav-coupons').classList.add('active');
+      document.getElementById('tab-coupons').classList.add('active');
+      document.getElementById('day-bar').style.display = 'none';
+      document.getElementById('main-content').scrollTop = 0;
     }
   }
 </script>
